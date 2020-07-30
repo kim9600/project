@@ -19,7 +19,7 @@ public class DBConnection {
 	public Connection getConnection() {
 		Connection con=null;
 		
-		String url="jdbc:mysql://localhost:3306/semiDB?useSSL=false";
+		String url="jdbc:mysql://localhost:3306/shoppingDB?useSSL=false";
 		String user="root";
 		String password="1234";
 		try {			

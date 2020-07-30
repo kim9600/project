@@ -44,8 +44,8 @@ public class BoardController extends HttpServlet {
 		}else if(command.equals("/BoardWriteAction.do")) {
 			//form에 넘어온 새 글 db에 저장
 			//db에 저장된 리스트를 조회한 후 reqeust에 저장
-			 rd = /* request.getRequestDispatcher("./board/list.jsp"); */
-					 request.getRequestDispatcher("/BoardListAction.do");			
+			 rd = /* request.getRequestDispatcher("./board/list.jsp");*/
+					 request.getRequestDispatcher("/BoardListAction.do");	
 		}
 		rd.forward(request, response);
 	}

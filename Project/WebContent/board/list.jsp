@@ -14,7 +14,7 @@
 	String text = (String)request.getAttribute("text");
 %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>제목</title>
   <meta charset="utf-8">
@@ -88,7 +88,7 @@
 				<input type="submit" value="검색" id="btnAdd" class="btn btn-primary">
 			</td>
 			<td width="100%" align="right">
-			<a href="writeForm.jsp" onclick="checkForm(); return false" class="btn btn-primary">&laquo;글쓰기</a>
+			<a href="http://localhost:8080/Semi_Project/board/writeForm.jsp" onclick="checkForm(); return false" class="btn btn-primary">&laquo;글쓰기</a>
 			</td>
 			</tr>			
 			</table>
