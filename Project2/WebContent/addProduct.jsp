@@ -16,51 +16,15 @@
 %>    
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8"><title>상품 등록</title>
-<!-- 추가한 link, script -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<!-- 추가한 link, script끝 -->
+
 <script src="./resources/js/validation.js"></script>
 </head>
 <body>
-
+<jsp:include page="menu.jsp"/>
 <fmt:setLocale value='<%=request.getParameter("language") %>'/>
 <fmt:bundle basename="bundle.message">
 
-<!-- 추가한 nav -->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">
-      	<img src="./resources/images/cat.jpg" height="30px" width="30px"></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-    	<div class="dropdown">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="menu.jsp">홈</a></li>
-        <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" text-align="center">관리자페이지
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-        <li ><a href="addProduct.jsp">상품등록</a></li>
-        <li><a href="productdemo2.jsp">상품편집</a></li>
-        <li><a href="user1.jsp">회원수정</a></li>
-        <li><a href="customerservice.jsp">게시판</a></li>
-        </ul>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      	<li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
-        
-      </ul>
-    	</div>
-    </div>
-  </div>
-</nav>  <!-- 추가한 nav끝 -->
+
 
 <div class="jumbotron">
 <div class="container">

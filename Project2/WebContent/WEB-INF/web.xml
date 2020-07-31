@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>Project1</display-name>
+  <display-name>Project2</display-name>
  <security-role>
 	<description></description>
 <role-name>admin</role-name>
 </security-role>
 <security-constraint>
-<display-name>Project1</display-name>
+<display-name>Project2</display-name>
 <web-resource-collection>
-<web-resource-name>Project1</web-resource-name>
+<web-resource-name>Project2</web-resource-name>
 	<description></description>
 <url-pattern>/admin.jsp</url-pattern>
 <url-pattern>/product.jsp</url-pattern>

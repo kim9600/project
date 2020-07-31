@@ -3,7 +3,9 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
     <%@ page trimDirectiveWhitespaces="true" %>
-<% String id=request.getParameter("id"); %>
+<% String id=request.getParameter("id");
+  
+%>
 <%--db접속 member테이블에서 조회 --%>
 <sql:setDataSource
 var="dataSource"

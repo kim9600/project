@@ -19,12 +19,12 @@
 </div>
 
 <div class="container-fluid">
-      <div class="row-fluid dropdown">
+      <div class="row-fluid">
         <div class="col-md-2">
           <div class="well sidebar-nav">
            <ul class="nav nav-list">
            <li class="nav-header">공지사항</li>
-              <li><a href="#">링크</a></li>
+              <li ><a href="#">문의글</a></li>
               <li><a href="#">링크</a></li>
               <li><a href="#">링크</a></li>
            
@@ -35,9 +35,12 @@
               <li><a href="#">링크</a></li>
               
              
-           </ul> 
-          </div><!--/.well -->
-        </div><!--/span-->
+           </ul>
+           </div> 
+          </div>
+        </div>
+        
+        
         <div class="span9">
           <div class="hero-unit">
           	<div class="col-sm-9" height="500px">
@@ -46,7 +49,7 @@
             
      
            
-          </div>
+          
          </div>
          </div>
          </div>

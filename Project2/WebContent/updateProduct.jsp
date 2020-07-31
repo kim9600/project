@@ -5,10 +5,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8"><title>상품 수정</title>
-<link rel="stylesheet"  href="./resources/css/bootstrap.min.css"> 
+
 <script src="./resources/js/validation.js"></script>
 </head>
 <body>
+<jsp:include page="/menu.jsp"/>
 <%@include file="dbconn.jsp" %>
 <%
 	String p_id=request.getParameter("id");
@@ -26,7 +27,7 @@
 
 <fmt:setLocale value='<%=request.getParameter("language") %>'/>
 <fmt:bundle basename="bundle.message">
-<jsp:include page="menu.jsp"/>
+
 <div class="jumbotron">
 <div class="container">
 	<h1 class="display-3"><fmt:message key="title"/></h1>

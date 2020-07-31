@@ -28,28 +28,18 @@
         action="processLoginMember.jsp" method="post">
   <div class="form-group">
      <label for="inputUserName" class="sr-only">User Name</label>
-     <input type="text" class="form-control" name="id"
+     <input type="text" class="form-control" name="adminid"
                      placeholder="ID" required autofocus>
     
   
   </div>
   <div class="form-group">
      <label for="inputPassword" class="sr-only">Password</label>
-     <input type="password" class="form-control" name="password" 
+     <input type="password" class="form-control" name="adminpassword" 
                      placeholder="Password" required>
   
   </div>
   <button type="submit" class="btn btn btn-lg btn-success btn-block">로그인</button>
   </form>
-  <br>
-  <a href="../admin.jsp">
-  <button type="submit" class="btn btn btn-lg btn-success btn-block" >관리자계정 로그인</button>
-  </a>
-
-  
-  
-  </div>
-</div>
-
 </body>
 </html>

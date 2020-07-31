@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+request.getParameter("id");
+%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <title>PET SHOP</title>
   <meta charset="utf-8">

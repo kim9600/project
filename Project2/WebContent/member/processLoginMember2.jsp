@@ -11,6 +11,7 @@
     
     String id=request.getParameter("id");
     String password=request.getParameter("password");
+  
     System.out.println("id:"+id+",password:"+password);
 %>
 <%-- 조회 --%>
@@ -18,16 +19,24 @@
     String sql="select * from member where id=? and password=?";
 	PreparedStatement pstmt=con.prepareStatement(sql);
 	pstmt.setString(1, id);
+	
 	pstmt.setString(2,password);
 	
+	
 	ResultSet rs=pstmt.executeQuery();
+ 	
 	 RequestDispatcher rd
 	 =request.getRequestDispatcher("resultMember.jsp?msg=2");
-     
+    
 	 while(rs.next()){
         session.setAttribute("sessionId",id);
       // response.sendRedirect("resultMember.jsp?msg=2");
       rd.forward(request, response);
+     
+  
      }
      response.sendRedirect("loginMember.jsp?error=1");
+    
 %>
+
+

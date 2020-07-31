@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% /* 로그인 여부확인  */
+	String sessionId=(String)session.getAttribute("sessionId");
+
+
+
+%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -42,23 +48,28 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="home.jsp">WebSiteName</a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/home.jsp">WebSiteName</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="home.jsp">Home</a></li>
-      <li><a href="${pageContext.request.contextPath}/editProduct.jsp/edit=update">수정</a></li>
+      <li class="active"><a href="${pageContext.request.contextPath}/home.jsp">Home</a></li>
+      <li><a href="${pageContext.request.contextPath}/addProduct.jsp">등록</a></li>
+      <li><a href="${pageContext.request.contextPath}/editProduct.jsp?edit=update">수정</a></li>
       <li><a href="${pageContext.request.contextPath}/editProduct.jsp?edit=delete">삭제</a></li>
      
       
       
-   
-      <li><a href="#">Page 2</a></li>
+   <li>  
+   <a href ="${pageContext.request.contextPath}/member/member_list.jsp">회원 목록보기</a>
+
+  </li>
+    
       <li><a href="http://localhost:8080/Project1/BoardListAction.do">게시판</a></li>
     </ul>
       <ul class="nav navbar-nav navbar-right">
-      <li><a href="admin.jsp"><span class="glyphicon glyphicon-log-in"></span>Admin</a></li>
-<li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out" ></span> 로그아웃</a></li>
-      
+      <li style="padding-top:7px;color:white">[관리자]</li>
+      <li><a href="${pageContext.request.contextPath}/admin.jsp"><span class="glyphicon glyphicon-log-in"></span>Admin</a></li>
+<li><a href="${pageContext.request.contextPath}/logout.jsp"><span class="glyphicon glyphicon-log-out" ></span> 로그아웃</a></li>
+   
 </ul>
 	
 

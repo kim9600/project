@@ -8,6 +8,7 @@
     
     String id=request.getParameter("id");
     String password=request.getParameter("password");
+    
 %>
 <%--
 <%=id%><br>
@@ -23,6 +24,7 @@
   select * from member where id=? and password=?
   <sql:param value="<%=id%>"/>
   <sql:param value="<%=password%>"/>
+  
 </sql:query>
 
 <%--결과 보기  while(rs.next()){
@@ -33,9 +35,17 @@
 <c:forEach var="row" items="${resultSet.rows}">
   <%
       session.setAttribute("sessionId", id);
+  		
   %>
    <c:redirect url="resultMember.jsp?msg=2"/>
+   
 </c:forEach>
+
+
+
+
+   
+
 
 <%-- 로그인페이지로 되돌악기 --%>
 <c:redirect url="loginMember.jsp?error=1"/>

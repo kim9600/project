@@ -1,5 +1,5 @@
 drop table member;
-
+insert into member(id,password,name) values('admin','admin1234','관리자');
 select *from member;
 create table member(
 id varchar(10) not null,
@@ -17,4 +17,6 @@ regist_day varchar(50),
 primary key(id)
 )default charset=utf8;
 
+
+delete from member where id='admin';
 select *from member;
