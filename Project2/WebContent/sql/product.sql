@@ -12,3 +12,5 @@ primary key(p_id)
 );
 
 select *from product;
+
+select * from product where p_name like '%no%';

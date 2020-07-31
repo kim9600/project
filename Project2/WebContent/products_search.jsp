@@ -20,48 +20,42 @@
 <% 
 	request.setCharacterEncoding("utf-8");
 	String search=request.getParameter("search");
-	String sql= "select p_name from product ";
+	String sql= "select * from product where p_name like ?";
 	PreparedStatement pstmt =con.prepareStatement(sql);
-	ResultSet rs =pstmt.executeQuery();
-	int result=0;
-     
- 	while(rs.next()){ //이름 전부출력
-		for(int i=0;i<rs.getString("p_name").length();i++){ //0~이름길이까지
-			for(int j=i+1;j<=rs.getString("p_name").length();j++)	{
-		if(rs.getString("p_name").substring(i, j).equals(search))
-			result=1;	
-			}
-		}
- 	out.print(search);
- 	}
- 	if(result==1){
-		String sql2="select * from product";
-		PreparedStatement pstmt2 =con.prepareStatement(sql2);
-		ResultSet rs2=pstmt2.executeQuery();
+	pstmt.setString(1, "%"+search+"%");
+	ResultSet rs= pstmt.executeQuery();
+	while(rs.next()){
+	
+   
+ 	
+		
+		
+			
+		
+			
+		
+ 	
+ 
 	
 	%>
 
 	
 	
 
-	 <div class="col-md-4">
-		<%-- <img src="./resources/imgaes/<%=rs2.getString("p_fileName")%>" style="width:100%"> --%>
+	  <div class="col-md-4">
+		<img src="./resources/images/<%=rs.getString("p_fileName")%>" style="width:100%">
 		
-			<h3><%=rs2.getString("p_name")%></h3>
-			<p><%=rs2.getString("p_description")%></p>
-			<p><%=rs2.getInt("p_unitPrice") %></p>
-			<p><a href="./product.jsp?id=<%=rs2.getString("p_id")%>" class="btn btn-secondary" role="button">상세정보&raquo;</a>
+			<h3><%=rs.getString("p_name")%></h3>
+			<p><%=rs.getString("p_description")%></p>
+			<p><%=rs.getInt("p_unitPrice") %></p>
+			<p><a href="./product.jsp?id=<%=rs.getString("p_id")%>" class="btn btn-secondary" role="button">상세정보&raquo;</a>
 			</p>
 		</div>  
-   <%
-	}else{
-%> 
- <h3>검색결과가 없습니다</h3>  
- <%	}
-	
-
-
-%>  
-
+<%} %>
+<%
+if(rs!=null) rs.close();
+if(pstmt!=null) pstmt.close();
+if(con!=null) con.close();
+%>
 </body>
 </html>

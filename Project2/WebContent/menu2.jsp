@@ -9,6 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    <% /* 로그인 여부확인  */
 	String sessionId=(String)session.getAttribute("sessionId");
+   String search=request.getParameter("search");
   	
  
 %>
