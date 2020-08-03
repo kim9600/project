@@ -1,26 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <% /* 로그인 여부확인  */
+	String sessionId=(String)session.getAttribute("sessionId");
+%>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="http://localhost:8080/Semi_Project/Home.jsp">PET SHOP</a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/home.jsp">Pet SHOP</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="http://localhost:8080/Semi_Project/Home.jsp">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="http://localhost:8080/Semi_Project/board/list.jsp">게시판</a></li>
-      </ul>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="${pageContext.request.contextPath}/home.jsp">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="${pageContext.request.contextPath}/company.jsp">회사소개 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="${pageContext.request.contextPath}/company.jsp">오시는길</a></li>
+          <li><a href="${pageContext.request.contextPath}/company.jsp">연혁</a></li>         
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">강아지 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">사료</a></li>
+          <li><a href="#">간식</a></li>
+          <li><a href="#">장난감</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">고양이 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">사료</a></li>
+          <li><a href="#">모래</a></li>
+          <li><a href="#">간식</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="${pageContext.request.contextPath}/BoardListAction.do">게시판</a></li>
+    </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
+        <c:choose>  
+       <c:when test="${empty sessionId}">
+      <li><a href="${pageContext.request.contextPath}/member/addMember.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="${pageContext.request.contextPath}/member/loginMember.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+</c:when>
+       <c:otherwise>
+       	<li style="padding-top:7px;color:white">[<%=sessionId%>님]</li>
+       	<li class="nav-item"><a class="nav-link" 
+       		href='${pageContext.request.contextPath}/member/logoutMember.jsp'>로그아웃</a>
+       	<li class="nav-item"><a class="nav-link" 
+       		href="${pageContext.request.contextPath}/member/updateMember.jsp">회원수정</a>
+       </c:otherwise>
+     </c:choose>  
+</ul>
+	<form class="navbar-form navbar-left" action="/action_page.php">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+  </div>  
 </nav>
+  
+</body>
+</html>

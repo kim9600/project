@@ -1,23 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html><head>
   <title>PET SHOP</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
   <style>    
   .navbar {margin-bottom: 0; border-radius: 0;}    
    footer {background-color: #f2f2f2; padding: 25px;}    
   .carousel-inner img {width: 100%; margin: auto; min-height:200px;} 
   @media (max-width: 600px) {.carousel-caption {display: none;}}
   </style>
+
 </head>
 <body>
-<jsp:include page="menu2.jsp"/>
+<jsp:include page="menu.jsp"/>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -69,10 +69,19 @@
     </div>
     <div class="col-sm-4">
       <div class="well">
-       <p>Some text..</p>
+       <h4><b>은행정보</b></h4>
+		예금주 : (주)펫샵<br>
+		국민93456-707070<br>
+		우리1005-486-717171<br>			
       </div>
       <div class="well">
-       <p>Some text..</p>
+      <h4><b>고객센터</b></h4>
+	  <h3 class="text-danger"><b>1688-7079</b></h3>
+		근무시간안내
+		평일10:00~18:00<br>
+		(점심시간 12:00 ~ 13:00)<br>
+		토요일10:00~13:00<br>
+		일요일 및 공휴일은 휴무입니다.
       </div>
     </div>
   </div>
