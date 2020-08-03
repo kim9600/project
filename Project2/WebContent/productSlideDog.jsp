@@ -1,5 +1,5 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="dao.ProductDAO"%>
+<%@page import="dao.ProductDAO1"%>
 <%@page import="dto.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,20 +10,20 @@
 <%
 	int pageNum = 0;
 	int slideNum = 0;
-	String pid = "";
+	String category = request.getParameter("category");
 	String id = request.getParameter("id");
 	if(request.getParameter("pageNum") != null)
 		pageNum = Integer.parseInt(request.getParameter("pageNum"));
 
-	ProductDAO dao = ProductDAO.getInstance();
+	ProductDAO1 dao = ProductDAO1.getInstance();
 	List<Product> pList = new ArrayList<Product>();
-	int total_record = dao.getProductCount();
+	int total_record = dao.getProductCount(category);
 	if(id.trim().length()<5){
 		slideNum = 1;
-		pList = dao.getProductList(pageNum);
+		pList = dao.getProductList(pageNum,category);
 	}else{
-		pageNum = dao.getProductPage(id);
-		pList = dao.getProductList(pageNum);
+		pageNum = dao.getProductPage(id,category);
+		pList = dao.getProductList(pageNum,category);
 	}
 	int total_page = 0; 
 	if(total_record%10==0) {         //나머지가 없는 경우
@@ -39,7 +39,7 @@
 	<meta charset="UTF-8">
 	<title>상품상세명세</title>
 </head>
-
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
@@ -126,7 +126,7 @@ img {
 </style>
 <body>
 
-	<jsp:include page="menu2.jsp"/>
+	<jsp:include page="menu.jsp"/>
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-5">상품상세명세</h1>
@@ -269,10 +269,10 @@ img {
 			    			if(i==j) break;
 			   	%>
 			    <li class="page-item">
-						<img class="demo cursor" src="./resources/images/<%=pd[i].getFilename()%>" style="width:100px" onclick="currentSlide(<%=i%>+1)" alt="<%=pd[i].getPname()%>">
+						<img class="demo cursor" src="./resources/images/<%=pd[i].getFilename()%>" style="width:100%" onclick="currentSlide(<%=i%>+1)" alt="<%=pd[i].getPname()%>">
 					</li>
 			    <%
-			  		}
+			    		}
 			    	}
 			    %>
 					<c:if test="${pageNum<total_page}">

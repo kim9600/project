@@ -33,7 +33,7 @@
      %> 
      <a href="./updateProduct.jsp?id=<%=rs.getString("p_id")%>" class="btn btn-success" role="button">수정&raquo;</a>
      <%}else if(edit.equals("delete")){ %>
-     <a href="#" onclick="deleteConfirm(<%=rs.getString("p_id") %>)" class="btn btn-danger" role="button">삭제&raquo;</a>
+     <a href="#" onclick="deleteConfirm('<%=rs.getString("p_id") %>')" class="btn btn-danger" role="button">삭제&raquo;</a>
      <%} %>
      </p>
     

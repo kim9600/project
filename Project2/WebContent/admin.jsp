@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,44 +22,50 @@
 </div>
 </div>
 
-<div class="container-fluid">
-      <div class="row-fluid">
-        <div class="col-md-2">
-          <div class="well sidebar-nav">
-           <ul class="nav nav-list">
-           <li class="nav-header"  data-toggle="collapse">공지사항</li>
-              <li><a href="test2.jsp">문의글</a></li>
-              <li><a href="#">링크</a></li>
-              <li><a href="#">링크</a></li>
-           
-            	
-             <li class="nav-header">공지사항2</li>
-              <li><a href="#">링크</a></li>
-              <li><a href="#">링크</a></li>
-              <li><a href="#">링크</a></li>
-              
-             
-           </ul>
-           </div> 
-          </div>
-        </div>
-        
-        
-        <div class="span9">
-          <div class="hero-unit">
-          	<div class="col-sm-9" height="500px">
-          		
-          	</div>
-            
-     
-           
-          
-         </div>
-         </div>
-         </div>
-         <hr>
+ 
+<!-- 전역변수(맴버변수,global변수) -->
+<% 
+	String greeting="Pet 쇼핑몰에 오신 것을 환영합니다."; 
+	String tagline="Welcome to PET GALLERY!";
+%>
+<div class="col-sm-8 text-left"> 
+      <h1>Welcome</h1>
+      <p><h3>관리자페이지 디자인중입니다.</h3></p>
+      <hr>
+      <h3>Test</h3>
+      <p>......</p>
+    </div>
+
+
+	
+<div class="container">	
+	<div class="text-center">
+		<h3><%=tagline %></h3>
+		<%
+			response.setIntHeader("Refresh", 1);
+			Date day = new java.util.Date();
+			String am_pm;
+			int hour=day.getHours();
+			int minute=day.getMinutes();
+			int second=day.getSeconds();
+			if(hour/12==0){//정수/정수=정수
+					am_pm="AM";
+			}else{
+				am_pm="PM";
+				hour=hour-12;//15-12=3;
+			}
+			DecimalFormat df1 = new DecimalFormat("00");
+			String CT = df1.format(hour)+":"+df1.format(minute)+":"+df1.format(second)+am_pm;
+			out.print("현재 접속 시간: "+CT+"<br>");
+		%>
+	</div>	
+	<hr>
+</div>
+<%@ include file="footer.jsp" %>
          
+    
+       
+
 </body>
 </html>
 
-</html>

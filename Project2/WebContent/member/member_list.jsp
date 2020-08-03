@@ -9,9 +9,9 @@
 <%@include file="../dbconn.jsp" %> 
 <jsp:include page="../menu.jsp"/>
 <%
-	String sql="select * from member";
-	PreparedStatement pstmt=con.prepareStatement(sql);
-	ResultSet rs= pstmt.executeQuery();
+   String sql="select * from member";
+   PreparedStatement pstmt=con.prepareStatement(sql);
+   ResultSet rs= pstmt.executeQuery();
 %>
 <html>
 <head>
@@ -19,20 +19,27 @@
 <title>회원관리 시스템</title>
 </head>
 <body>
+<div class="jumbotron">
+   <div class="container">
+      <h1 class="display-3">회원목록</h1>
+   </div>
+</div>
 
-<table border=1 style="width: 300">
- <tr align=center><td colspan=2>회원목록</td></tr>
+<div class="container">
+<div style="padding-top:50px;">
+<table class="table table-hover">
+<tr>
+<th>회원아이디</th><th>정보</th><th>삭제</th>
+</tr>
 <% while(rs.next()){ %>
-  <tr align=center>
-   <td>
-    <a href="member_info.jsp?id=<%=rs.getString("id") %>">
-     <%=rs.getString("id")%>
-    </a>
-   </td>
-   <td><a href="member_delete.jsp?id=<%=rs.getString("id") %>">삭제</a></td>
+  <tr>
+  <td><%=rs.getString("id")%></td>
+  <td><a href="member_info.jsp?id=<%=rs.getString("id") %>"><span class="glyphicon glyphicon-search"></span></a></td>   
+  <td><a href="member_delete.jsp?id=<%=rs.getString("id") %>"><span class="glyphicon glyphicon-trash"></span></a></td> 
   </tr>
  <%} %>
 </table>
-
+</div>
+</div>
 </body>
 </html>

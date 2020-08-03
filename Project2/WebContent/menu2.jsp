@@ -45,7 +45,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="${pageContext.request.contextPath}/home.jsp">Pet Gallery</a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/home.jsp">PET GALLERY</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="${pageContext.request.contextPath}/home.jsp">Home</a></li>
@@ -57,16 +57,14 @@
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">멍이<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="products12.jsp">사료</a></li>
-          <li><a href="products.jsp">간식</a></li>
-          <li><a href="#">장난감</a></li>
+          <li><a href="productsDog.jsp">사료</a></li>
+    
         </ul>
       </li>
        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">냥이<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="products12.jsp">사료</a></li>
-          <li><a href="products.jsp">간식</a></li>
-          <li><a href="#">장난감</a></li>
+          <li><a href="productsCat.jsp">사료</a></li>
+          
         </ul>
       </li>
      
