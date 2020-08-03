@@ -8,7 +8,7 @@ function changePass(id){
 			"toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=500,height=400");
 }
 </script>
-<jsp:include page="../menu2.jsp"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <%
 	String sessionId=(String)session.getAttribute("sessionId");
 %>
@@ -26,7 +26,7 @@ function changePass(id){
 
 <meta charset="UTF-8">
 <title>회원수정</title></head><body>
-
+<jsp:include page="/menu.jsp"/>
 <div class="jumbotron">
   <div class="container">
     <h1 class="display-3">회원 수정</h1>
@@ -38,10 +38,7 @@ function changePass(id){
    <c:set var="mail1" value="${mail.split('@')[0]}"/>
    <c:set var="mail2" value="${mail.split('@')[1]}"/>
    
-   <c:set var="birth" value="${row.birth}"/>
-   <c:set var="year"  value="${birth.split('/')[0]}"/>
-   <c:set var="month" value="${birth.split('/')[1]}"/>
-   <c:set var="day"   value="${birth.split('/')[2]}"/>
+   <c:set var="birth" value="${row.birth}"/> 
 <div class="container">
 <form name="newMember" class="form-horizontal" 
       action="processUpdateMember.jsp" method="post" 
@@ -64,7 +61,7 @@ function changePass(id){
 	    <div class="col-sm-3">
 	    	<input type="password" name="password_confirm" class="form-control" placeholder="password_confirm">
 	    	<input type="button" class="btn btn-primary" 
-	    		value="비밀번호 변경" id="changePassword"
+	    		value="비밀번호" id="changePassword"
 	   		 	name="changePassword" onclick="changePass('${row.id}')">
 		</div>
 	</div>
@@ -87,23 +84,7 @@ function changePass(id){
 	<div class="form-group row">
 	    <label class="col-sm-2">생일</label>
 	    <div class="col-sm-4">
-	    	<input name="birthyy" maxlength="4" placeholder="년(4자)" size="6" value='<c:out value="${year}"/>'>
-	    	<select name="birthmm">
-	    	 <option value="">월</option>
-	    	 <option value="01" <c:if test="${month==01}">selected</c:if>>1</option>
-	    	 <option value="02" <c:if test="${month==02}">selected</c:if>>2</option>
-	    	 <option value="03" <c:if test="${month==03}">selected</c:if>>3</option>
-	    	 <option value="04" <c:if test="${month==04}">selected</c:if>>4</option>
-	    	 <option value="05" <c:if test="${month==05}">selected</c:if>>5</option>
-	    	 <option value="06" <c:if test="${month==06}">selected</c:if>>6</option>
-	    	 <option value="07" <c:if test="${month==07}">selected</c:if>>7</option>
-	    	 <option value="08" <c:if test="${month==08}">selected</c:if>>8</option>
-	    	 <option value="09" <c:if test="${month==09}">selected</c:if>>9</option>
-	    	 <option value="10" <c:if test="${month==10}">selected</c:if>>10</option>
-	    	 <option value="11" <c:if test="${month==11}">selected</c:if>>11</option>
-	    	 <option value="12" <c:if test="${month==12}">selected</c:if>>12</option>
-	    	</select>
-	    	<input name="birthdd" maxlength="2" placeholder="일" size="4" value='<c:out value="${day}"/>'>
+	    	<input  type ="date" name="birth" value='<c:out value="${birth}"/>'>
 	    </div>
 	</div>
 	

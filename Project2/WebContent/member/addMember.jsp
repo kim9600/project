@@ -45,9 +45,18 @@ function checkForm(){
   <title>회원가입</title>
  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>    
+  .navbar {margin-bottom: 0; border-radius: 0;}    
+   footer {background-color: #f2f2f2; padding: 25px;}    
+  .carousel-inner img {width: 100%; margin: auto; min-height:200px;} 
+  @media (max-width: 600px) {.carousel-caption {display: none;}}
+  </style>
 </head>
 <body>
-<jsp:include page="../menu2.jsp"/>
+<jsp:include page="../menu.jsp"/>
 <div class="container">
   <h1>회원가입</h1>
   </div>
@@ -90,27 +99,12 @@ function checkForm(){
 	    	<input name="gender" type="radio" value="여">여
 	    </div>
 	</div>
+	
 	<div class="form-group row">
 	    <label class="col-sm-2">생일</label>
 	    <div class="col-sm-4">
-	    	<input name="birthyy" maxlength="4" placeholder="년(4자)" size="6">
-	    	<select name="birthmm">
-	    	 <option value="">월</option>
-	    	 <option value="01">1</option>
-	    	 <option value="02">2</option>
-	    	 <option value="03">3</option>
-	    	 <option value="04">4</option>
-	    	 <option value="05">5</option>
-	    	 <option value="06">6</option>
-	    	 <option value="07">7</option>
-	    	 <option value="08">8</option>
-	    	 <option value="09">9</option>
-	    	 <option value="10">10</option>
-	    	 <option value="11">11</option>
-	    	 <option value="12">12</option>
-	    	</select>
-	    	<input name="birthdd" maxlength="2" placeholder="일" size="4">
-	    </div>
+	    	<input type="date" id="birth" name="birth">	    
+	    </div>	    
 	</div>
 	<div class="form-group row">
 	    <label class="col-sm-2">이메일</label>

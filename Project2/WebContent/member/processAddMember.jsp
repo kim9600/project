@@ -10,11 +10,7 @@
     String password=request.getParameter("password");
 	String name=request.getParameter("name");
 	String gender=request.getParameter("gender");
-	String birthyy=request.getParameter("birthyy");
-	String birthmm=request.getParameter("birthmm");
-	String birthdd=request.getParameter("birthdd");
-	
-	String birth = birthyy+"/"+birthmm+"/"+birthdd;
+	String birth=request.getParameter("birth");
 	
 	String mail1=request.getParameter("mail1");
 	String mail2=request.getParameter("mail2");
@@ -26,30 +22,13 @@
 	String address=request.getParameter("address");
 	String detailAddress=request.getParameter("detailAddress");
 	String extraAddress=request.getParameter("extraAddress");
-	//member테이블 등록 일시 데이타 생성
 	Date currentDatetime=
 	           new Date(System.currentTimeMillis());
 	java.sql.Date sqlDate=
 			  new java.sql.Date(currentDatetime.getTime());
 	Timestamp timestamp=new Timestamp(currentDatetime.getTime());
 %> 
-<%-- <%=currentDatetime %><br>
-<%=sqlDate %><br>
-<%=timestamp %><br> --%>
-<%-- <%=id %><br>
-<%=password %><br>
-<%=name %><br>
-<%=gender %><br>
-<%=birthyy %><br>
-<%=birthmm %><br>
-<%=birthdd %><br>
-<%=mail1 %><br>
-<%=mail2 %><br>
-<%=phone %><br>
-<%=postcode %><br>
-<%=address %><br>
-<%=detailAddress %><br>
-<%=extraAddress %><br> --%>
+
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
 <title>jstl sql</title>

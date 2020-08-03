@@ -62,10 +62,20 @@ request.getParameter("id");
     </div>
     <div class="col-sm-4">
       <div class="well">
-       <p>Some text..</p>
+       <h4><b>은행정보</b></h4>
+      예금주 : (주)펫샵<br>
+      국민93456-707070<br>
+      우리1005-486-717171<br>         
       </div>
       <div class="well">
-       <p>Some text..</p>
+      <h4><b>고객센터</b></h4>
+     <h3 class="text-danger"><b>1688-7079</b></h3>
+      근무시간안내
+      평일10:00~18:00<br>
+      (점심시간 12:00 ~ 13:00)<br>
+      토요일10:00~13:00<br>
+      일요일 및 공휴일은 휴무입니다.
+
       </div>
     </div>
   </div>

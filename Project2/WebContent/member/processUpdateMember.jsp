@@ -9,13 +9,8 @@
     String id=request.getParameter("id");
     String password=request.getParameter("password");
 	String name=request.getParameter("name");
-	String gender=request.getParameter("gender");
-	String birthyy=request.getParameter("birthyy");
-	String birthmm=request.getParameter("birthmm");
-	String birthdd=request.getParameter("birthdd");
-	
-	String birth = birthyy+"/"+birthmm+"/"+birthdd;
-	
+	String gender=request.getParameter("gender");	
+	String birth = request.getParameter("birth");	
 	String mail1=request.getParameter("mail1");
 	String mail2=request.getParameter("mail2");
 	
@@ -33,16 +28,17 @@
 			  new java.sql.Date(currentDatetime.getTime());
 	Timestamp timestamp=new Timestamp(currentDatetime.getTime());
 %> 
+
 <sql:setDataSource   var="dataSource" 
       driver="com.mysql.jdbc.Driver"
       url="jdbc:mysql://localhost:3306/shoppingDB"
       user="root"
       password="1234"/>
-      
+
 <sql:update dataSource="${dataSource}" var="resultSet">
-	update member set password=?,name=?,gender=?,
-	       birth=?,mail=?,phone=?,postcode=?,address=?,
-	       detailAddress=?,extraAddress=?,regist_day=? where id=?
+update member set password=?,name=?,gender=?,
+	birth=?,mail=?,phone=?,postcode=?,address=?,
+	detailAddress=?,extraAddress=?,regist_day=? where id=?
 	<sql:param value="<%=password %>"/>
 	<sql:param value="<%=name %>"/>
 	<sql:param value="<%=gender %>"/>
@@ -54,9 +50,9 @@
 	<sql:param value="<%=detailAddress %>"/>
 	<sql:param value="<%=extraAddress %>"/>
 	<sql:param value="<%=timestamp %>"/>
-	<sql:param value="<%=id%>"/>
-</sql:update>      
+	<sql:param value="<%=id %>"/>
+</sql:update> 
 
 <c:if test="${resultSet>=1}">
-  <c:redirect url="resultMember.jsp?msg=0"/>
-</c:if>
+	<c:redirect url="resultMember.jsp?msg=0"/>
+	</c:if>
