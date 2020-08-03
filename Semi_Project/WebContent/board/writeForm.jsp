@@ -1,8 +1,10 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<% String name = (String)request.getAttribute("name"); %>
+<!DOCTYPE html><html lang="en"><head>
   <title>글쓰기</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,45 +19,47 @@
   </style>
 </head>
 <body>
+<sql:setDataSource var="dataSource" 
+				   url="jdbc:mysql://localhost:3306/semiDB" 
+				   driver="com.mysql.jdbc.Driver"
+				   user="root"
+				   password="1234"/>
 <jsp:include page="../menu.jsp"/>
-<div class="container text-center">	
-	<h1 class="display-3">글쓰기</h1>	
+<div class="jumbotron">
+	<div class="container">
+		<h1 class="display-3">글쓰기</h1>
+	</div>
 </div>
+<!-- 글쓰기 폼 -->
 <div class="container">
-<form name="newProduct" action="./processAddProduct.jsp"
-	  class="form-horizontal" method="post" enctype="multipart/form-data">
-
-<div class="form-group row">
-	<label class="col-sm-2">성명</label>
-	<div class="col-sm-3">
-		<input type="text" name="wirter" id="writer" class="form-control">
-	</div>
-</div>
-
-<div class="form-group row">
-	<label class="col-sm-2">제목</label>
-	<div class="col-sm-5">
-		<input type="text" name="title" id="title" class="form-control">
-	</div>
-</div>
-
-
-<div class="form-group row">
-	<label class="col-sm-2">내용</label>
-	<div class="col-sm-7">
-		<textarea rows="10" cols="50" name="contents" id="contents" class="form-control" ></textarea>
-	</div>
-</div>
-
-
-<div class="form-group row">	
-	<div class="col-sm-offset-2 com-sm-10">
-		<input type="submit" class="btn btn-primary" value="등록" >
-		<input type="reset" class="btn btn-primary" value="취소" >
-	</div>
-</div>
-
-</form>
+	<form name="newWrite" action="./BoardWriteAction.do" class="form-horizontal" method="post" onclick="return checkForm()">
+		<input type="hidden" name="id" class="form-control" value="${sessionId}">
+		<div class="form-group row">
+			<label class="col-sm-2 control-label">성명</label>
+			<div class="col-sm-3">
+				<input name="name" class="form-control" value="<%=name%>" placeholder="name" readonly>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 control-label">제목</label>
+			<div class="col-sm-5">
+				<input name="subject" class="form-control" placeholder="subject" autofocus>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 control-label">내용</label>
+			<div class="col-sm-8">
+				<textarea rows="5" cols="80" name="content" class="form-control" placeholder="content"></textarea>				
+			</div>
+		</div>
+		<div class="form-group row">			
+			<div class="col-sm-10 col-sm-offset-2">
+				<input type="submit" class="btn btn-primary" value="등록" >
+				<input type="reset" class="btn btn-primary" value="취소">	
+			</div>
+		</div>
+	</form>
+	<hr>
 </div>
 <jsp:include page="../footer.jsp"/>
 </body>

@@ -12,12 +12,24 @@
 	//검색 조건 추가에 따른 조건,검색 내용 추가 받기
 	String items = (String)request.getAttribute("items");
 	String text = (String)request.getAttribute("text");
+	
+	int currentBlock=(Integer)request.getAttribute("currentBlock");
+	int startPage=(Integer)request.getAttribute("startPage");
+	int endPage=(Integer)request.getAttribute("endPage");
+	int total_segment=(Integer)request.getAttribute("total_segment");
 %>
+<script>
+function checkForm(){
+	if(${sessionId==null}){
+		alert("로그인 해주세요");
+		return false;
+	}
+	//writeForm으로 이동
+	location.href="./BoardWriteFormAction.do?id=<%=sessionId%>";
+}
+</script>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>제목</title>
-  <meta charset="utf-8">
+<html><head><title>게시판</title><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -52,28 +64,54 @@
 				%>
 				<tr>
 					<td><%=notice.getNum() %></td>
-					<td><%=notice.getSubject() %></td>
+					<td><a href="./BoardViewAction.do?num=<%=notice.getNum()%>&pageNum=<%=pageNum%>"><%=notice.getSubject() %></a></td>
 					<td><%=notice.getRegist_day() %></td>
 					<td><%=notice.getHit() %></td>
 					<td><%=notice.getName() %></td>
 				</tr>
 				<% }%>			
 			</table>
-		</div>		
+		</div>	
+			<c:set var ="pageNum" value='<%=pageNum%>'/>
+		  	<c:set var="total_page" value='<%=total_page %>'/>
+		  	<c:set var="startPage" value='<%=startPage %>'/>
+		  	<c:set var="endPage" value='<%=endPage%>'/>
+		  	<c:set var="total_segment" value='<%=total_segment%>'/>
+		  	<c:set var="currentBlock" value='<%=currentBlock%>'/>
+		  	
 		<div align="center">
 			<c:set var="pageNume" value="<%=pageNum %>"/>
-			<c:forEach var="i" begin="1" end="<%=total_page %>">
-				<a href="<c:url value="./BoardListAction.do?pageNum=${i}&items=${items}&text=${text}"/>">
-					<c:choose>
-						<c:when test="${pageNum==i}">
-							<font color='4C5317'><b>[${i}]</b></font>
-						</c:when>
-						<c:otherwise>
-							<font color='4C5317'>[${i}]</font>
-						</c:otherwise>
-					</c:choose>					
-				</a>
+			<ul class="pagination pagination-xs">
+			
+			<c:if test="${currentBlock<=1}">
+				<li class="previous disabled"><a href="#">Previous</a></li>
+			</c:if>
+			<c:if test="${currentBlock>1}">
+				<li class="previous"><a href="<c:url value="./BoardListAction.do?pageNum=${startPage-1}&items=${items}&text=${text}"/>">Previous</a></li>
+			</c:if>			
+			
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+			<li <c:if test="${pageNum==i}">class='active'</c:if>><a href="<c:url value="./BoardListAction.do?pageNum=${i}&items=${items}&text=${text}"/>">
+  	         <c:choose>
+  	           <c:when test="${pageNum==i}">
+  	              <font color='4C5317'><b>${i}</b></font>
+  	           </c:when>
+  	           <c:otherwise>
+  	           		<font color='4C5317'>${i}</font>
+  	           </c:otherwise>
+  	         </c:choose>
+  	       </a>
+  	       </li>    
 			</c:forEach>
+			<c:if test="${currentBlock<total_segment}">
+  	 	 <li class="next">
+  	 	 <a href="<c:url value="./BoardListAction.do?pageNum=${endPage+1}&items=${items}&text=${text}"/>">Next</a>
+  	 	 </li>
+  	 </c:if>
+  	 <c:if test="${currentBlock>=total_segment}">
+  	  <li class="next disabled"><a href="#">Next</a></li>
+  	 </c:if>   
+			</ul>
 		</div><%-- 페이지 네이게이션 끝. --%>
 		<%-- 검색조건 --%>
 		<div>

@@ -33,4 +33,4 @@ insert into board(id,name,subject,content,regist_day,hit,ip) values('iljimae','�
 insert into board(id,name,subject,content,regist_day,hit,ip) values('hong','홍길동','제목7','내용7','20200729',0,'127.0.0.1');
 insert into board(id,name,subject,content,regist_day,hit,ip) values('hong','홍길동','제목8','내용8','20200729',0,'127.0.0.1');
 
-
+http://localhost:8080/Semi_Project/BoardListAction.do

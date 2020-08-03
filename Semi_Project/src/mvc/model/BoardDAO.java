@@ -73,7 +73,7 @@ public class BoardDAO {
 		String sql="";
 		//검색 내용이 없을 때
 		if(items==null || text.trim().length()==0)
-			sql="select * from board";
+			sql="select * from board order by num desc";
 		//검색 조건이 있을 때
 		else
 			sql="select * from board where "+items+" like '%"+text+"%' order by num desc";
@@ -117,5 +117,180 @@ public class BoardDAO {
 			}
 		}
 		return list;//조회된 게시글 리스트 리턴
-	}		
+	}
+	public String getNameById(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String name="";
+		try {
+			con=DBConnection.getInstance().getConnection();	
+			String sql="select name from member where id=?";
+			pstmt=con.prepareStatement(sql);			
+			pstmt.setString(1,id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				name=rs.getString(1);
+			}			
+		} catch (Exception e) {
+			System.out.println("getNameById()에러:"+e);			
+		}finally {//
+			try {//자원해제 처리
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(con!=null) con.close();
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		return name;
+	}
+	public void insertBoard(BoardDTO board) {
+		Connection con=null;
+		PreparedStatement pstmt = null;
+		try {
+			con=DBConnection.getInstance().getConnection();	
+			String sql="insert into board(id,name,subject,content,regist_day,hit,ip) values(?,?,?,?,?,?,?)";
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setString(1, board.getId());
+			pstmt.setString(2, board.getName());
+			pstmt.setString(3, board.getSubject());
+			pstmt.setString(4, board.getContent());
+			pstmt.setString(5, board.getRegist_day());
+			pstmt.setInt(6, board.getHit());
+			pstmt.setString(7, board.getIp());
+			
+			//update실행
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("insertBoard()에러:"+e);
+		}finally {//
+			try {//자원해제 처리				
+				if(pstmt!=null) pstmt.close();
+				if(con!=null) con.close();
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+	//board정보 리턴
+	public BoardDTO getBoardByNum(int num, int pageNum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BoardDTO board = null;
+		updateHit(num);
+		try {
+			con=DBConnection.getInstance().getConnection();	
+			String sql="select * from board where num=?";
+			pstmt=con.prepareStatement(sql);			
+			pstmt.setInt(1,num);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				board=new BoardDTO();
+				board.setNum(rs.getInt("num"));
+				board.setId(rs.getString("id"));
+				board.setName(rs.getString("name"));
+				board.setSubject(rs.getString("subject"));
+				board.setContent(rs.getString("content"));
+				board.setRegist_day(rs.getString("regist_day"));
+				board.setHit(rs.getInt("hit"));
+				board.setIp(rs.getString("ip"));
+			}			
+		} catch (Exception e) {
+			System.out.println("getBoardByNum()에러:"+e);			
+		}finally {//
+			try {//자원해제 처리
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(con!=null) con.close();
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		return board;//board리턴
+	}
+	//조회수 증가 메소드
+		public void updateHit(int num) {
+			//db연결
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			try {
+				//db연결하기
+				con=DBConnection.getInstance().getConnection();
+				//쿼리문 작성
+				String sql = "update board set hit = hit+1 where num=?";
+				//쿼리객체 생성
+				pstmt=con.prepareStatement(sql);
+				//바인딩변수처리
+				pstmt.setInt(1, num);
+				//dbupdate처리
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				System.out.println("updateHit()에러:"+e);
+			} finally {
+				try {
+					if(pstmt!=null) pstmt.close();
+					if(con!=null) con.close();
+				} catch (Exception e) {
+					throw new RuntimeException(e.getMessage());
+				}
+			}
+		}
+	public void updateBoard(BoardDTO board) {
+		Connection con=null;
+		PreparedStatement pstmt = null;
+		try {
+			con=DBConnection.getInstance().getConnection();	
+			String sql="update board set subject=?,content=?,regist_day=?,ip=? where num=?";
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setString(1, board.getSubject());
+			pstmt.setString(2, board.getContent());
+			pstmt.setString(3, board.getRegist_day());
+			pstmt.setString(4, board.getIp());
+			pstmt.setInt(5, board.getNum());	
+			
+			//update실행
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("updateBoard()에러:"+e);
+		}finally {//
+			try {//자원해제 처리				
+				if(pstmt!=null) pstmt.close();
+				if(con!=null) con.close();
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+	}
+	public void deleteBoard(int num) {
+		//DB연결객체
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			//db연결하기
+			con=DBConnection.getInstance().getConnection();
+			String sql = "delete from board where num=?";
+			//쿼리객체 생성
+			pstmt = con.prepareStatement(sql);
+			//바인딩변수 설정
+			pstmt.setInt(1, num);
+			//삭제 쿼리 실행
+			pstmt.executeUpdate();			
+		} catch (Exception e) {
+			System.out.println("deleteBoard()오류발생:"+e);
+		} finally {//자원해제 처리
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(con!=null) con.close();
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}				
 }
