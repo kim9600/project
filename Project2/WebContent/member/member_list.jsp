@@ -16,7 +16,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원관리 시스템 관리자모드(회원 목록 보기)</title>
+<title>회원관리 시스템</title>
 </head>
 <body>
 

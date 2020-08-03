@@ -2,7 +2,9 @@ package mvc.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -44,18 +46,129 @@ public class BoardController extends HttpServlet {
 		  //db에서 조회한 글 리스트를 request에 저장
 		 requestBoardList(request);
 		  rd =
-	      request.getRequestDispatcher("./board/list.jsp");  
+	      request.getRequestDispatcher("./board/list.jsp");
+		  
+		  
       }else if(command.equals("/BoardWriteFormAction.do")) {
+    	  requestGetName(request);
     	  rd=
     	  request.getRequestDispatcher("./board/writeForm.jsp");
       }else if(command.equals("/BoardWriteAction.do")) {
     	  //form에 넘어온 새글 db저장
+    	  requestBoardWrite(request);
     	  //db에 저장된 리스트 조회한 후 request에  저장
     	  rd=
 					/* request.getRequestDispatcher("./board/list.jsp"); */
     	  request.getRequestDispatcher("/BoardListAction.do");
+      }else if(command.equals("/BoardViewAction.do")) {//선택된 글 상세페이지
+    	 requestBoardView(request);
+    	 rd=request.getRequestDispatcher("/BoardView.do");
+      }else if(command.equals("/BoardView.do")) { //글 상세페이지 출력
+    	  rd=request.getRequestDispatcher("./board/view.jsp");
+      }else if(command.equals("/BoardUpdateAction.do")) { //글 상세페이지 출력
+    	  //update내용 db에 저장하기
+    	  requestBoardUpdate(request);
+    	  rd=request.getRequestDispatcher("/BoardListAction.do");
+      }else if(command.equals("/BoardDeleteAction.do")) {
+    	  //삭제처리
+    	  requestBoardDelete(request);
+    	  //게시글 리스트로 이동
+    	  rd=request.getRequestDispatcher("/BoardListAction.do");
       }
-	  rd.forward(request, response);
+	  
+	  
+	  
+	  
+	  rd.forward(request, response);  
+	}
+
+	private void requestBoardDelete(HttpServletRequest request) {
+		//request로 넘어온 파라미터 처리
+		   int num=Integer.parseInt(request.getParameter("num"));
+		   int pageNum=Integer.parseInt(request.getParameter("pageNum"));
+			
+		   //db에서 삭제 처리
+		   BoardDAO dao=BoardDAO.getInstance();
+		   dao.deleteBoard(num);
+				
+			}
+	//update정보 db에 저장하기
+	private void requestBoardUpdate(HttpServletRequest request) {
+		BoardDAO dao=BoardDAO.getInstance();
+		//리스트로 되돌갈때 원래 페이지로 가기위한 값
+		int num=Integer.parseInt(request.getParameter("num"));
+		int pageNum=Integer.parseInt(request.getParameter("pageNum"));
+		
+		//db에서 정보 얻기
+		BoardDTO board=new BoardDTO();
+		board.setNum(num);
+		board.setSubject(request.getParameter("subject"));
+		board.setContent(request.getParameter("content"));
+		
+		SimpleDateFormat formatter 
+		   = new SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
+		 String regist_day=formatter.format(new Date());
+		 
+		 board.setRegist_day(regist_day);
+		 board.setIp(request.getRemoteAddr());//ip주소 
+		 
+		 dao.updateBoard(board);
+		
+		//view로 정보를 넘기기위한 설정
+		request.setAttribute("num", num);
+		request.setAttribute("page", pageNum);
+		request.setAttribute("board", board);
+		
+	}
+
+	private void requestBoardView(HttpServletRequest request) {
+		BoardDAO dao=BoardDAO.getInstance();
+		//리스트로 되돌갈때 원래 페이지로 가기위한 값
+		int num=Integer.parseInt(request.getParameter("num"));
+		int pageNum=Integer.parseInt(request.getParameter("pageNum"));
+		
+		//db에서 정보 얻기
+		BoardDTO board=new BoardDTO();
+		board=dao.getBoardByNum(num,pageNum);
+		
+		//view로 정보를 넘기기위한 설정
+		request.setAttribute("num", num);
+		request.setAttribute("page", pageNum);
+		request.setAttribute("board", board);
+		}
+
+	private void requestBoardWrite(HttpServletRequest request) {
+		//DB저장객체 생성
+		 BoardDAO dao=BoardDAO.getInstance();
+		 
+		 BoardDTO board=new BoardDTO();
+		 board.setId(request.getParameter("id"));
+		 board.setName(request.getParameter("name"));
+		 board.setSubject(request.getParameter("subject"));
+		 board.setContent(request.getParameter("content"));
+		 
+		 System.out.println(board.getId());
+		 System.out.println(board.getName());
+		 System.out.println(board.getSubject());
+		 System.out.println(board.getContent());
+		 
+		 SimpleDateFormat formatter 
+		   = new SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
+		 String regist_day=formatter.format(new Date());
+		 
+		 board.setHit(0);
+		 board.setRegist_day(regist_day);
+		 board.setIp(request.getRemoteAddr());//ip주소 
+		 
+		 dao.insertBoard(board);
+		 
+		}
+
+	private void requestGetName(HttpServletRequest request) {
+		String id=request.getParameter("id");
+		BoardDAO dao=BoardDAO.getInstance();
+		String name=dao.getNameById(id);
+		request.setAttribute("name",name);
 	}
 
 	//등록된 글 목록 가져오기 - 한페이지당 5개의 글 출력
@@ -93,6 +206,22 @@ public class BoardController extends HttpServlet {
 		 total_page = total_page+1;//자투리가 있는 경우 한페이 추가
 	 }
 	 
+	 // segment단위로 페이지 처리하기
+	 int pageLength=5;//한 화면에 5개페이지씩 보이도록 설정
+	 int currentBlock=pageNum%pageLength==0?pageNum/pageLength:(pageNum/pageLength)+1;
+	 
+	 //현재 화면에 보여지는 페이지의 첫재페이지번호
+	 int startPage=1+(currentBlock-1)*pageLength;//1,6
+	 int endPage = startPage + pageLength -1;//5,10,
+	 int total_segment=
+  (total_record%(limit*pageLength)==0)?
+    total_record/(limit*pageLength):
+	 (total_record/(limit*pageLength)+1);
+	 
+	 //글 조회후 마지막페이지 보정
+	 endPage=endPage>total_page?total_page:endPage;
+	 
+	 
 	 //결과를 view에 전달하기위해 request에 저장
 	 request.setAttribute("pageNum", pageNum);// 페이지번호
 	 request.setAttribute("total_page", total_page);// 전체 페이지 수
@@ -101,5 +230,11 @@ public class BoardController extends HttpServlet {
      //검색조건추가에 따른 조건,검색내용 추가 전달
 	 request.setAttribute("items", items);
 	 request.setAttribute("text", text);
+	//segment처리 파라미터 설정
+		 request.setAttribute("currentBlock", currentBlock);//현재화면의 블럭
+		 request.setAttribute("startPage",startPage);//현재화면의 시작페이지
+		 request.setAttribute("endPage",endPage);//현재화면의 끝페이지
+		 request.setAttribute("total_segment",total_segment);//전체 블럭수
+		
 	}
 }

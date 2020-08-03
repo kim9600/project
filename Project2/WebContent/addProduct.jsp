@@ -45,7 +45,7 @@
    <label class="col-sm-2"><fmt:message key="productId"/></label>
    <div class="col-sm-3">
    		<input type="text" name="productId" id="productId" class="form-control"
-   		  value="<%=pid %>">
+   		  value="<%=pid %>" placeholder="P1234">
    </div>
 </div>
 <div class="form-group row">

@@ -9,9 +9,9 @@
 <script src="./resources/js/validation.js"></script>
 </head>
 <body>
-<jsp:include page="/menu.jsp"/>
+<jsp:include page="menu2.jsp"/>
 <%@include file="dbconn.jsp" %>
-<%
+<%	
 	String p_id=request.getParameter("id");
 	System.out.println("p_id:"+p_id);
 	String sql="select * from product where p_id=?";
@@ -19,8 +19,10 @@
 	pstmt.setString(1, p_id);
 	ResultSet rs=pstmt.executeQuery();
 	rs.next();
+	
+	
 	//category 값 저장
-	String category=rs.getString("p_category");
+ 	String category=rs.getString("p_category"); 
 	//상품상태 값 저장
 	String condition=rs.getString("p_condition");
 %>
@@ -48,7 +50,7 @@
    <label class="col-sm-2"><fmt:message key="productId"/></label>
    <div class="col-sm-3">
    		<input type="text" name="productId" id="productId" class="form-control"
-   		  value="<%=rs.getString("p_id") %>" readonly>
+   		  value="<%=rs.getString("p_id") %>">
    </div>
 </div>
 <div class="form-group row">
@@ -86,7 +88,7 @@
     PreparedStatement pstmt2=con.prepareStatement(sql2);
     ResultSet rs2=pstmt2.executeQuery();
    %>
-   <%
+    <%
   	while(rs2.next()){
   		out.print("<option value='"+rs2.getString(1)+"' "
   	+(rs2.getString(1).equals(category)?"selected":"")+">"+rs2.getString(1)+"</option>");

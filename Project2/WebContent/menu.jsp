@@ -55,6 +55,7 @@
       <li><a href="${pageContext.request.contextPath}/addProduct.jsp">등록</a></li>
       <li><a href="${pageContext.request.contextPath}/editProduct.jsp?edit=update">수정</a></li>
       <li><a href="${pageContext.request.contextPath}/editProduct.jsp?edit=delete">삭제</a></li>
+      <li><a href="${pageContext.request.contextPath}/addCategory.jsp">카테고리등록</a></li>
      
       
       
@@ -63,7 +64,7 @@
 
   </li>
     
-      <li><a href="http://localhost:8080/Project1/BoardListAction.do">게시판</a></li>
+      <li><a href="http://localhost:8080/Project2/BoardListAction.do">게시판</a></li>
     </ul>
       <ul class="nav navbar-nav navbar-right">
       <li style="padding-top:7px;color:white">[관리자]</li>

@@ -57,8 +57,8 @@
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">강아지 <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="test1.jsp">사료</a></li>
-          <li><a href="#">간식</a></li>
+          <li><a href="products12.jsp">사료</a></li>
+          <li><a href="products.jsp">간식</a></li>
           <li><a href="#">장난감</a></li>
         </ul>
       </li>

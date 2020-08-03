@@ -4,7 +4,7 @@
 <%@ include file="dbconn.jsp" %>
 <%
 	//파라미터로 넘어온 상품id를 받아서 db에서 삭제처리
-	String id=request.getParameter("id");
+	String id=request.getParameter("p_id");
 	String sql="delete from product where p_id=?";
 	con.setAutoCommit(false);
 	PreparedStatement pstmt =con.prepareStatement(sql);

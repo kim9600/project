@@ -39,7 +39,7 @@
 	
 	%>
 
-	
+	<!--  이미지 src경로를 프로젝트에 resource/images 경로말고 다른경로 확인필요 -->
 	
 
 	  <div class="col-md-4">

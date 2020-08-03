@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
+<style>
+
+</style>
 </head>
 <body>
 <jsp:include page="menu.jsp"/>
@@ -23,8 +25,8 @@
         <div class="col-md-2">
           <div class="well sidebar-nav">
            <ul class="nav nav-list">
-           <li class="nav-header">공지사항</li>
-              <li ><a href="#">문의글</a></li>
+           <li class="nav-header"  data-toggle="collapse">공지사항</li>
+              <li><a href="test2.jsp">문의글</a></li>
               <li><a href="#">링크</a></li>
               <li><a href="#">링크</a></li>
            
@@ -44,7 +46,7 @@
         <div class="span9">
           <div class="hero-unit">
           	<div class="col-sm-9" height="500px">
-          		<jsp:include page="home.jsp"/>
+          		
           	</div>
             
      

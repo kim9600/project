@@ -44,3 +44,12 @@ values('illjimae','일지매','제목지매6','내용6','20200729', 0, '127.0.0.
 insert into board(id,name,subject,content,regist_day,hit,ip) 
 values('hong','홍길동','제목길동7','내용길동7','20200729', 0, '127.0.0.1');
 
+
+delete from member where name is null;
+insert into member 
+ (select 'hong','1234','홍길동',gender,birth,mail,phone,
+        postcode,address,detailAddress,extraAddress,regist_day 
+ from member where id='hwang');
+ 
+insert into board(id,name,subject,content,regist_day,hit,ip) 
+select id,name,subject,content,regist_day,hit,ip from board;

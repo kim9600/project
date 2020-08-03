@@ -27,7 +27,7 @@ public class DBConnection {
 		String password="";
 		try {
 		//file정보 얻기
-		File file =new File("C:\\jspworkspace\\WebMarket18\\src\\dbconnection.properties");
+		File file =new File("C:\\Users\\admin\\git\\repository11\\Project2\\src\\dbconnection.properties");
 		//속성,값 저장할 객체 생성
 		Properties prop =new Properties();
 		//파일정보를 읽을 통로생성
