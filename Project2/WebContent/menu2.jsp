@@ -51,19 +51,20 @@
       <li class="active"><a href="${pageContext.request.contextPath}/home.jsp">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">회사소개 <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">오시는길</a></li>
-          <li><a href="#">연혁</a></li>         
+          <li><a href="contacts.jsp">오시는길</a></li>
+          <li><a href="history.jsp">연혁</a></li>         
         </ul>
       </li>
+      <li><a href="products.jsp">전체 상품</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">멍이<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="productsDog.jsp">사료</a></li>
+          <li><a href="${pageContext.request.contextPath}/productsDog.jsp">멍이용품</a></li>
     
         </ul>
       </li>
        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">냥이<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="productsCat.jsp">사료</a></li>
+          <li><a href="${pageContext.request.contextPath}/productsCat.jsp">냥이용품</a></li>
           
         </ul>
       </li>

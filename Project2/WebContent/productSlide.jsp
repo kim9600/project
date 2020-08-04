@@ -231,7 +231,7 @@ img {
 						  <input type="hidden" name="id" value='<%=pd[i].getProductId() %>'>
 							<a href="#" class="btn btn-info" onclick="addToCart('<%=i%>')">상품주문&raquo;</a>
 							<a href="./cart.jsp" class="btn btn-warning">장바구니&raquo;</a>
-					 	  <a href="./products.jsp" class="btn btn-secondary">상품목록&raquo;</a>				
+					 	  <a href="./products.jsp" class="btn btn-success">상품목록&raquo;</a>				
 						</form>
 					</div>
 				</div>

@@ -50,8 +50,8 @@
 					<h3><%=rs.getString("p_name")%></h3>
 					<p><%=rs.getString("p_description")%></p>
 					<h5><%=new DecimalFormat("#,###").format(rs.getInt("p_unitPrice"))%>원</h5>
-					<p><a href="./productSlideCat.jsp?id=<%=rs.getString("p_id")%>&category='CAT'&pageNum=<%=pageNum%>"
-								class="btn btn-secondary" role="button">상품상세명세&raquo;</a>
+					<p><a href="./productSlideCat.jsp?id=<%=rs.getString("p_id")%>&category=CAT&pageNum=<%=pageNum%>"
+								class="btn btn-success" role="button">상품상세명세&raquo;</a>
 				</div>
 			<%}%>
 		</div>

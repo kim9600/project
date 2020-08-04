@@ -39,7 +39,7 @@
 	<meta charset="UTF-8">
 	<title>상품상세명세</title>
 </head>
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
@@ -126,7 +126,7 @@ img {
 </style>
 <body>
 
-	<jsp:include page="menu.jsp"/>
+	<jsp:include page="menu2.jsp"/>
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-5">상품상세명세</h1>
@@ -231,7 +231,7 @@ img {
 						  <input type="hidden" name="id" value='<%=pd[i].getProductId() %>'>
 							<a href="#" class="btn btn-info" onclick="addToCart('<%=i%>')">상품주문&raquo;</a>
 							<a href="./cart.jsp" class="btn btn-warning">장바구니&raquo;</a>
-					 	  <a href="./products.jsp" class="btn btn-secondary">상품목록&raquo;</a>				
+					 	  <a href="./products.jsp" class="btn btn-success">상품목록&raquo;</a>				
 						</form>
 					</div>
 				</div>
@@ -260,7 +260,7 @@ img {
 					</c:if>
 					<c:if test="${pageNum>1}">
 				    <li class="page-item enabled">
-					    <a href="./productSlide.jsp?id='10'&pageNum=<%=pageNum-1%>" class="page-link btn btn-secondary">Previous</a></li>
+					    <a href="./productSlideDog.jsp?id='10'&pageNum=<%=pageNum-1%>" class="page-link btn btn-secondary">Previous</a></li>
 					</c:if>
 			    
 			    <%
@@ -269,7 +269,7 @@ img {
 			    			if(i==j) break;
 			   	%>
 			    <li class="page-item">
-						<img class="demo cursor" src="./resources/images/<%=pd[i].getFilename()%>" style="width:100%" onclick="currentSlide(<%=i%>+1)" alt="<%=pd[i].getPname()%>">
+						<img class="demo cursor" src="./resources/images/<%=pd[i].getFilename()%>" style="width:100" onclick="currentSlide(<%=i%>+1)" alt="<%=pd[i].getPname()%>">
 					</li>
 			    <%
 			    		}

@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>주문완료</title>
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css"/>
+
 </head>
 <body>
 <%
@@ -83,7 +83,7 @@
 		/* if(con != null) con.close(); */
 	}
 %>
-<jsp:include page="menu.jsp"/>
+<jsp:include page="menu2.jsp"/>
 <div class="jumbotron">
 	<div class="container">
 		<h1 class="display-4">주문완료</h1>
@@ -95,7 +95,7 @@
 	<p> 주문번호 : <%=shipping_cartId %>
 </div>
 <div class="container">
-	<p><a href="./products.jsp" class="btn btn-secondary">&laquo;상품목록</a>
+	<p><a href="./products.jsp" class="btn btn-success">&laquo;상품목록</a>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>

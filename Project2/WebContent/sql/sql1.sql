@@ -1,6 +1,6 @@
 select *from product;
 update product set p_condition='New';
-
+update product set p_category='CAT' where p_category='Cat';
 
 select concat('P', cast(substr(max(p_id),2)as unsigned)+1) from product;
 
@@ -17,11 +17,14 @@ primary key(seq)
 delete from category where categoryName='Home';
 select * from category;
 
-
+update category set description ='DOG' where description='Dog';
+update category set description ='CAT' where description='Cat';
+update category set description ='ETC' where description='';
+update category set categoryName ='ETC' where categoryName='Duck';
 /*카테고리 테이블에 데이타 입력*/
-insert into category(categoryName,description) values('Cat', 'Cat');
-insert into category(categoryName,description) values('Dog', 'Dog');
-insert into category(categoryName,description) values('Duck', 'Duck');
+insert into category(categoryName,description) values('CAT', 'CAT');
+insert into category(categoryName,description) values('DOG', 'DOG');
+insert into category(categoryName,description) values('ETC', 'ETC');
 
 select categoryName from category order by seq;
 

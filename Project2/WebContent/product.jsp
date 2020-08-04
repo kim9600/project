@@ -67,7 +67,7 @@ function addToCart(){
 
 <a href="#" class="btn btn-info" onclick="addToCart()">상품주문&raquo;</a>
 <a href="./cart.jsp" class="btn btn-warning">장바구니 &raquo;</a>
-<a href="./products.jsp" class="btn btn-secondary">상품 목록&raquo;</a>
+<a href="./products.jsp" class="btn btn-success">상품 목록&raquo;</a>
 </form>
 </div>
 </div>

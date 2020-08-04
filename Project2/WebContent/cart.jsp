@@ -15,8 +15,7 @@
 		var id = document.getElementById("id"+seq).value;
 		id = id.substring(0,id.indexOf("-"));
 		var qty = document.getElementById("qty"+seq).value;
-		alert(id);
-		var yesno = confirm("수정하시겠습니까?");
+		var yesno = confirm(id+"를"+qty+"개로 수정하시겠습니까?");
 		if(yesno) location.href="changeCart.jsp?id="+id+"&qty="+qty;
 	}
 	function k(seq){

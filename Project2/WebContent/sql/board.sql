@@ -20,6 +20,7 @@ delete table board;
 
 select * from board where subject like '%길동%';
 select count(*) from board where content like '%길동%';
+update board set subject ='환불 문의합니다' where subject='제목4';
 
 select count(*) from board;
 /*데이타 입력*/

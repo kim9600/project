@@ -147,4 +147,41 @@ public class ProductDAO1 {
 		}
 		return list; //조회된 게시글 리스트 리턴
 	}
+	
+	public Product getProductById(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from product order by p_id =?";
+		Product pd = new Product();
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				pd.setProductId(rs.getString("p_id"));
+				pd.setPname(rs.getString("p_name"));
+				pd.setUnitPrice(rs.getInt("p_unitPrice"));
+				pd.setDescription(rs.getString("p_description"));
+				pd.setManufacturer(rs.getString("p_manufacturer"));
+				pd.setCategory(rs.getString("p_category"));
+				pd.setUnitsInStock(rs.getInt("p_unitsInStock"));
+				pd.setCondition(rs.getString("p_condition"));
+				pd.setFilename(rs.getString("p_filename"));
+				return pd;
+			}
+		} catch (Exception e) {
+			System.out.println("getProductList()에러:"+e.getMessage());
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				throw new RuntimeException(e2.getMessage());
+			}
+		}
+		return null;
+	}
 }

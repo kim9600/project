@@ -56,7 +56,7 @@ function checkForm(){
   </style>
 </head>
 <body>
-<jsp:include page="../menu.jsp"/>
+<jsp:include page="../menu2.jsp"/>
 <div class="container">
   <h1>회원가입</h1>
   </div>

@@ -66,12 +66,15 @@
 		
 	}
 	
-	
+
  
 	
 	//상세페이지로 이동시 원래 상품정보출력
 	//try{
-	response.sendRedirect("product.jsp?id="+id);
+/* 	response.sendRedirect("product.jsp?id="+id); */
+		out.print("<script>");
+		out.print("history.back()");
+		out.print("</script>");
 	
 	
 	%>

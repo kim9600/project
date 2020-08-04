@@ -14,3 +14,5 @@ primary key(p_id)
 select *from product;
 
 select * from product where p_name like '%no%';
+
+insert into product values('P1000','고양이깃털장난감','15000','고양이깃털장난감','CAT','야옹','100','신규','catToy.jpg');

@@ -231,7 +231,7 @@ img {
 						  <input type="hidden" name="id" value='<%=pd[i].getProductId() %>'>
 							<a href="#" class="btn btn-info" onclick="addToCart('<%=i%>')">상품주문&raquo;</a>
 							<a href="./cart.jsp" class="btn btn-warning">장바구니&raquo;</a>
-					 	  <a href="./productsCat.jsp" class="btn btn-secondary">상품목록&raquo;</a>				
+					 	  <a href="./productsCat.jsp" class="btn btn-success">상품목록&raquo;</a>				
 						</form>
 					</div>
 				</div>
@@ -269,7 +269,7 @@ img {
 			    			if(i==j) break;
 			   	%>
 			    <li class="page-item">
-						<img class="demo cursor" src="./resources/images/<%=pd[i].getFilename()%>" style="width:100%" onclick="currentSlide(<%=i%>+1)" alt="<%=pd[i].getPname()%>">
+						<img class="demo cursor" src="./resources/images/<%=pd[i].getFilename()%>" style="width:100" onclick="currentSlide(<%=i%>+1)" alt="<%=pd[i].getPname()%>">
 					</li>
 			    <%
 			    		}
@@ -277,7 +277,8 @@ img {
 			    %>
 					<c:if test="${pageNum<total_page}">
 				    <li class="page-item enabled">
-					    <a href="./productSlide.jsp?id='1'&pageNum=<%=pageNum+1%>" class="page-link btn btn-secondary">Next</a></li>
+					    <a href="./productSlideCat.jsp?id='1'&pageNum=<%=pageNum+1%>" 
+					    class="page-link btn btn-secondary">Next</a></li>
 					</c:if>
 					<c:if test="${pageNum>=total_page}">
 			  	  <li class="page-item disabled"><a href="#">Next</a></li>

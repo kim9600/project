@@ -6,7 +6,11 @@ request.getParameter("id");
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PET SHOP</title>
+<style>
+b{color: blue;}
+#target{color:purple;}
+</style>
+  <title>PET GALLERY</title>
   <meta charset="utf-8">
 <jsp:include page="menu2.jsp"/>
 </head>
@@ -24,16 +28,16 @@ request.getParameter("id");
       <div class="item active">
         <img src="./resources/images/dog_n_cat.png" alt="Image" >
         <div class="carousel-caption">
-          <h3>Sell $</h3>
-          <p>Money Money.</p>
+          <h3>PET GALLERY에 오신 것을 환영합니다.</h3>
+          <p>PET GALLERY만의 다양한 상품과 혜택을 만나보세요!</p>
         </div>      
       </div>
 
       <div class="item">
         <img src="./resources/images/dog_n_cat.png" alt="Image" />
         <div class="carousel-caption">
-          <h3>More Sell $</h3>
-          <p>Lorem ipsum...</p>
+          <h3>도전하는 PET GALLERY</h3>
+          <p>한 걸음,한 걸음 씩, 빠르진 않아도 더 나은 내일을 향해 노력합니다.</p>
         </div>      
       </div>
 
@@ -50,15 +54,19 @@ request.getParameter("id");
   
     </div>
 <div class="container text-center">    
-  <h3>What We Do</h3><br>
+  <h3 id="target">추천 상품 </h3><br>
   <div class="row">
     <div class="col-sm-4">
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Current Project</p>
+      <a href="productsDog.jsp">
+      <img src="./resources/images/dogfood.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <p><b>★ 주문 1위 ★</b> 강아지 사료</p>
+      </a>
     </div>
     <div class="col-sm-4"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Project 2</p>    
+      <a href="productsCat.jsp">
+      <img src="./resources/images/catToy.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <p>고양이 깃털 장난감</p>    
+      </a>
     </div>
     <div class="col-sm-4">
       <div class="well">

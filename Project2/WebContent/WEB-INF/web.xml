@@ -11,7 +11,7 @@
 <web-resource-name>Project2</web-resource-name>
 	<description></description>
 <url-pattern>/admin.jsp</url-pattern>
-<url-pattern>/product.jsp</url-pattern>
+
 <url-pattern>/addProduct.jsp</url-pattern>
 
 </web-resource-collection>

@@ -28,7 +28,7 @@
       <table class="table table-bordered" >   
           <tr align=center><td><b>아이디:</b></td><td><%=rs.getString("id") %></td></tr>
           <tr align=center><td><b>비밀번호 :</b></td><td><%=rs.getString("password") %></td></tr> 
-          <tr align=center><td><b>나이:</b></td><td><%=rs.getString("name") %></td></tr>
+          <tr align=center><td><b>성명:</b></td><td><%=rs.getString("name") %></td></tr>
           <tr align=center><td><b>성별:</b></td><td><%=rs.getString("gender") %></td></tr>
           <tr align=center><td><b>생년월일:</b></td><td><%=rs.getString("birth") %></td></tr> 
           <tr align=center><td><b>이메일 주소:</b></td><td><%=rs.getString("mail") %></td></tr> 
