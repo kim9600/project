@@ -17,36 +17,38 @@ select * from board;
 desc board;
 /*테이블 삭제*/
 delete table board;
-
+delete from board where id='im';
 select * from board where subject like '%길동%';
 select count(*) from board where content like '%길동%';
 update board set subject ='환불 문의합니다' where subject='제목4';
 
 select count(*) from board;
 /*데이타 입력*/
-insert into board(id,name,subject,content,regist_day,hit,ip) 
-values('hong','홍길동','제목1','내용1','20200729', 0, '127.0.0.1');
+
+
 
 insert into board(id,name,subject,content,regist_day,hit,ip) 
-values('hong','홍길동','제목길동2','내용2','20200729', 0, '127.0.0.1');
+values('hong','홍길동','회원가입 문의합니다','가입이 안됩니다','20200729', 0, '127.0.0.1');
 
 insert into board(id,name,subject,content,regist_day,hit,ip) 
-values('hong','홍길동','제목3','내용3','20200729', 0, '127.0.0.1');
+values('hong','홍길동','회원가입 문의합니다','가입이 안되요','20200729', 0, '127.0.0.1');
 
 insert into board(id,name,subject,content,regist_day,hit,ip) 
-values('hong','홍길동','제목4','내용4','20200729', 0, '127.0.0.1');
+values('hong','홍길동','상품 문의합니다','고양이 깃털장난감 사고싶어요','20200729', 0, '127.0.0.1');
 
 insert into board(id,name,subject,content,regist_day,hit,ip) 
-values('im','임꺽정','제목꺽정5','내용6','20200729', 0, '127.0.0.1');
+values('hong','홍길동','환불 문의합니다','환불요청!!','20200729', 0, '127.0.0.1');
 
 insert into board(id,name,subject,content,regist_day,hit,ip) 
-values('illjimae','일지매','제목지매6','내용6','20200729', 0, '127.0.0.1');
+values('illjimae','일지매','환불 문의합니다','환불요청!!','20200729', 0, '127.0.0.1');
 
 insert into board(id,name,subject,content,regist_day,hit,ip) 
-values('hong','홍길동','제목길동7','내용길동7','20200729', 0, '127.0.0.1');
+values('illjimae','일지매','회원가입 문의합니다','가입이안되요!','20200729', 0, '127.0.0.1');
 
 
-delete from member where name is null;
+
+select *from member;
+delete from member where name ='임꺽정';
 insert into member 
  (select 'hong','1234','홍길동',gender,birth,mail,phone,
         postcode,address,detailAddress,extraAddress,regist_day 

@@ -260,16 +260,16 @@ img {
 					</c:if>
 					<c:if test="${pageNum>1}">
 				    <li class="page-item enabled">
-					    <a href="./productSlide.jsp?id='10'&pageNum=<%=pageNum-1%>" class="page-link btn btn-secondary">Previous</a></li>
+					    <a href="./productSlide.jsp?id=1&category=CAT&pageNum=<%=pageNum-1%>" class="page-link btn btn-secondary">Previous</a></li>
 					</c:if>
 			    
 			    <%
-			    	for(int i=0;i<pd.length;i++){
+			    	for(int i=0;i<=j;i++){
 			    		if(!pd[i].getFilename().equals("")){
 			    			if(i==j) break;
 			   	%>
 			    <li class="page-item">
-						<img class="demo cursor" src="./resources/images/<%=pd[i].getFilename()%>" style="width:100" onclick="currentSlide(<%=i%>+1)" alt="<%=pd[i].getPname()%>">
+						<img class="demo cursor" src="./resources/images/<%=pd[i].getFilename()%>" style="width: 100px" onclick="currentSlide(<%=i%>+1)" alt="<%=pd[i].getPname()%>">
 					</li>
 			    <%
 			    		}
@@ -277,7 +277,7 @@ img {
 			    %>
 					<c:if test="${pageNum<total_page}">
 				    <li class="page-item enabled">
-					    <a href="./productSlideCat.jsp?id='1'&pageNum=<%=pageNum+1%>" 
+					    <a href="./productSlideCat.jsp?id=1&category=CAT&pageNum=<%=pageNum+1%>" 
 					    class="page-link btn btn-secondary">Next</a></li>
 					</c:if>
 					<c:if test="${pageNum>=total_page}">

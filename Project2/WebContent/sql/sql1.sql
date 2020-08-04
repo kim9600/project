@@ -17,10 +17,7 @@ primary key(seq)
 delete from category where categoryName='Home';
 select * from category;
 
-update category set description ='DOG' where description='Dog';
-update category set description ='CAT' where description='Cat';
-update category set description ='ETC' where description='';
-update category set categoryName ='ETC' where categoryName='Duck';
+
 /*카테고리 테이블에 데이타 입력*/
 insert into category(categoryName,description) values('CAT', 'CAT');
 insert into category(categoryName,description) values('DOG', 'DOG');

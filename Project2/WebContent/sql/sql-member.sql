@@ -1,6 +1,7 @@
 drop table member
 insert into member(id,password,name) values('admin','admin1234','관리자');
 select *from member;
+
 create table member(
 id varchar(10) not null,
 password varchar(10) not null,
@@ -18,5 +19,6 @@ primary key(id)
 )default charset=utf8;
 
 
-delete from member where birth='1996-06-03';
+
+delete from member where gender='남'; where birth='1996-06-03';
 select *from member;
