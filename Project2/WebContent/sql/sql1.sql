@@ -1,6 +1,5 @@
 select *from product;
-update product set p_condition='New';
-update product set p_category='CAT' where p_category='Cat';
+
 
 select concat('P', cast(substr(max(p_id),2)as unsigned)+1) from product;
 
@@ -23,7 +22,7 @@ insert into category(categoryName,description) values('CAT', 'CAT');
 insert into category(categoryName,description) values('DOG', 'DOG');
 insert into category(categoryName,description) values('ETC', 'ETC');
 
-select categoryName from category order by seq;
+
 
 /*배송 테이블*/
 create table sale(

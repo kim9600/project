@@ -1,3 +1,4 @@
+/*상품테이블 */
 create table product(
 p_id varchar(10),
 p_name varchar(20),
@@ -15,6 +16,7 @@ select *from product;
 
 select * from product where p_name like '%no%';
 update product set p_category='DOG' where p_condition='중고';
+/*상품리스트*/
 insert into product values('P1000','고양이깃털장난감','15000','고양이깃털장난감','CAT','야옹','100','신규','catToy.jpg');
 insert into product values('P1001','고양이사료 4kg 10kg','15000','고양이사료','CAT','야옹','100','신규','catfood.jpg');
 insert into product values('P1002','오더락 고양이모래 12kg','15000','고양이모래','CAT','오더락','150','신규','cat1.jpg');

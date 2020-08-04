@@ -9,6 +9,7 @@
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	ResultSet rs = pstmt.executeQuery();
 	String pid = "";
+
 	if(rs.next()) pid = rs.getString(1).trim();
 %>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
 <script src="./resources/js/validation.js"></script>
 </head>
 <body>
-	<jsp:include page="menu2.jsp"/>
+	<jsp:include page="menu.jsp"/>
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-4">상품목록</h1>
@@ -109,7 +110,7 @@
 				<label class="col-sm-2">이미지</label>
 				<div class="col-sm-5">
 					<input type="file" name="productImage" id="myFile" class="form-control"/>
-					<form><img src="https://placehold.it/150x90?text=IMAGE" id="myImg" style="width:100%" alt="Image"/></form>
+					<form><img src="./resources/images/<%=rs.getString("p_fileName") %>" id="myImg" style="width:100%" alt="Image"/></form>
 				</div>
 			</div>
 			
