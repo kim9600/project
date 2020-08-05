@@ -17,6 +17,8 @@
 </div> <!-- 점보트론 끝 -->
 <%@include file="dbconn.jsp" %>
 
+	<div class="container">
+		<div class="row" align="center">
 <% 
 	request.setCharacterEncoding("utf-8");
 	String search=request.getParameter("search");
@@ -39,19 +41,18 @@
 	
 	%>
 
-	<!--  이미지 src경로를 프로젝트에 resource/images 경로말고 다른경로 확인필요 -->
 	
-
-	  <div class="col-md-4">
-		<img src="./resources/images/<%=rs.getString("p_fileName")%>" style="width:100%">
-		
+	  <div class="col-md-3 img-thumbnail" style="height: 432px">
+		<img src="./resources/images/<%=rs.getString("p_fileName")%>" style="width:200px" height="200px">
 			<h3><%=rs.getString("p_name")%></h3>
 			<p><%=rs.getString("p_description")%></p>
 			<p><%=rs.getInt("p_unitPrice") %></p>
-			<p><a href="./product.jsp?id=<%=rs.getString("p_id")%>" class="btn btn-secondary" role="button">상세정보&raquo;</a>
+			<p><a href="./product.jsp?id=<%=rs.getString("p_id")%>" class="btn btn-success" role="button">상세정보&raquo;</a>
 			</p>
 		</div>  
 <%} %>
+		</div>
+		</div>
 <%
 if(rs!=null) rs.close();
 if(pstmt!=null) pstmt.close();

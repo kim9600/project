@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	int pageNum = 0;
-	int slideNum = 0;
+	int slideNum = 0; 
 	String category = request.getParameter("category");
 	String id = request.getParameter("id");
 	if(request.getParameter("pageNum") != null)
@@ -17,21 +17,15 @@
 
 	ProductDAO1 dao = ProductDAO1.getInstance();
 	List<Product> pList = new ArrayList<Product>();
-	int total_record = dao.getProductCount(category);
 	if(id.trim().length()<5){
-		slideNum = 1;
+		slideNum = Integer.parseInt(id);
 		pList = dao.getProductList(pageNum,category);
 	}else{
 		pageNum = dao.getProductPage(id,category);
 		pList = dao.getProductList(pageNum,category);
 	}
-	int total_page = 0; 
-	if(total_record%10==0) {         //나머지가 없는 경우
-	 total_page = total_record/10;   //정수/정수 = 정수
-	}else {                          //나머지가 있는 경우
-	 total_page = total_record/10;   //정수/정수 = 정수
-	 total_page = total_page + 1;    //자투리가 있는 경우 한페이지 추가
-	}
+	int total_record = dao.getProductCount(category);
+	int total_page = dao.getProductPageCount(category);
 %>
 <!DOCTYPE html>
 <html>
@@ -143,8 +137,7 @@ img {
 		
 		//System.out.println("j:"+j);
 		//pd.length-j:
- 		/* System.out.println("j=:"+(j+1)); */
-			/* for(int i=j+1;i<10;i++){
+/* 		for(int i=j+1;i<10;i++){
 				pd[i].setFilename("");
 				pd[i].setPname("");
 				pd[i].setDescription("");
@@ -153,52 +146,23 @@ img {
 				pd[i].setCategory("");
 				pd[i].setUnitPrice(0);
 				pd[i].setUnitsInStock(0);
-			} */
+		} */
 
-		for(int i=0;i<j;i++){
-			switch (i) {
-  			case 0:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 1;
-	  					break;
-				case 1:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 2;
-	  					break;
-				case 2:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 3;
-	  					break;
-				case 3:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 4;
-	  					break;
-				case 4:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 5;
-	  					break;
-				case 5:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 6;
-	  					break;
-				case 6:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 7;
-	  					break;
-				case 7:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 8;
-	  					break;
-				case 8:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 9;
-	  					break;
-				case 9:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 10;
-	  					break;
-				default:
-  					slideNum = 1;
+		for(int i=0;i<=j;i++){
+			if(id.equals(pd[i].getProductId())){
+				switch (i) {
+	  			case 0:	slideNum = 1;	break;
+					case 1:	slideNum = 2;	break;
+					case 2:	slideNum = 3;	break;
+					case 3:	slideNum = 4;	break;
+					case 4:	slideNum = 5;	break;
+					case 5:	slideNum = 6;	break;
+					case 6:	slideNum = 7; break;
+					case 7:	slideNum = 8;	break;
+					case 8:	slideNum = 9;	break;
+					case 9:	slideNum = 10; break;
+					default: slideNum = 1;
+				}
 			}
 		}
 %>
@@ -260,25 +224,22 @@ img {
 					</c:if>
 					<c:if test="${pageNum>1}">
 				    <li class="page-item enabled">
-					    <a href="./productSlide.jsp?id=1&category=CAT&pageNum=<%=pageNum-1%>" class="page-link btn btn-secondary">Previous</a></li>
+					    <a href="./productSlideCat.jsp?id=10&category=CAT&pageNum=<%=pageNum-1%>" class="page-link btn btn-secondary">Previous</a></li>
 					</c:if>
 			    
 			    <%
 			    	for(int i=0;i<=j;i++){
 			    		if(!pd[i].getFilename().equals("")){
-			    			if(i==j) break;
 			   	%>
 			    <li class="page-item">
-						<img class="demo cursor" src="./resources/images/<%=pd[i].getFilename()%>" style="width: 100px" onclick="currentSlide(<%=i%>+1)" alt="<%=pd[i].getPname()%>">
+						<img class="demo cursor" src="./resources/images/<%=pd[i].getFilename()%>" style="width:100px" onclick="currentSlide(<%=i%>+1)" alt="<%=pd[i].getPname()%>">
 					</li>
-			    <%
-			    		}
+			    <%  }
 			    	}
 			    %>
 					<c:if test="${pageNum<total_page}">
 				    <li class="page-item enabled">
-					    <a href="./productSlideCat.jsp?id=1&category=CAT&pageNum=<%=pageNum+1%>" 
-					    class="page-link btn btn-secondary">Next</a></li>
+					    <a href="./productSlideCat.jsp?id=1&category=CAT&pageNum=<%=pageNum+1%>" class="page-link btn btn-secondary">Next</a></li>
 					</c:if>
 					<c:if test="${pageNum>=total_page}">
 			  	  <li class="page-item disabled"><a href="#">Next</a></li>

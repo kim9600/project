@@ -30,10 +30,10 @@
 %>
 <div class="col-sm-8 text-left"> 
       <h1>Welcome</h1>
-      <p><h3>관리자페이지 디자인중입니다.</h3></p>
+      <p><h3>관리자페이지 입니다.</h3></p>
       <hr>
-      <h3>Test</h3>
-      <p>......</p>
+      <h3>Admin</h3>
+      <p>관리자님 안녕하세요</p>
     </div>
 
 

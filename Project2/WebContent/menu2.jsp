@@ -49,13 +49,14 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="${pageContext.request.contextPath}/home.jsp">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">회사소개 <span class="caret"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">회사소개<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="${pageContext.request.contextPath}/history.jsp">회사소개</a></li>
-          <li><a href="${pageContext.request.contextPath}/contacts.jsp">연혁</a></li>     
+          <li><a href="${pageContext.request.contextPath}/contacts.jsp">오시는길</a></li>
+    
         </ul>
       </li>
-      <li><a href="products.jsp">전체 상품</a></li>
+      <li><a href="${pageContext.request.contextPath}/products.jsp">전체 상품</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">멍이<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="${pageContext.request.contextPath}/productsDog.jsp">멍이용품</a></li>
@@ -75,9 +76,9 @@
       <c:choose>
       
        <c:when test="${empty sessionId}">
-       
+       <li><a href="${pageContext.request.contextPath}/admin.jsp"><span class="glyphicon glyphicon-user"></span>관리자페이지</a></li>
       <li><a href="${pageContext.request.contextPath}/member/loginMember.jsp"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
-      <li><a href="${pageContext.request.contextPath}/member/addMember.jsp"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+      <li><a href="${pageContext.request.contextPath}/agreement.jsp"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
       </c:when>
        <c:otherwise>
        	<li style="padding-top:7px;color:white">[<%=sessionId%>님]</li>
@@ -86,6 +87,7 @@
        	%>
        	<li class="nav-item"><a class="nav_link" href="${pageContext.request.contextPath}/admin.jsp">관리자계정</a>
        	<%} %>
+       
         <li class="nav-item"><a class="nav-link" 
        		href='${pageContext.request.contextPath}/member/logoutMember.jsp'>로그아웃</a>
        	<li class="nav-item"><a class="nav-link" 

@@ -19,7 +19,7 @@
 	if(pstmt != null) pstmt.close();
 	if(con != null) con.close();
 
-	response.sendRedirect("./products.jsp");
+	response.sendRedirect("./addProduct.jsp");
 
 %>
 

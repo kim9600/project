@@ -10,13 +10,7 @@
 <%
 	ProductDAO1 dao = ProductDAO1.getInstance();
 	int total_record = dao.getProductCount("CAT");
-	int total_page = 0; 
-	if(total_record%10==0) {         //나머지가 없는 경우
-	 total_page = total_record/10;   //정수/정수 = 정수
-	}else {                          //나머지가 있는 경우
-	 total_page = total_record/10;   //정수/정수 = 정수
-	 total_page = total_page + 1;    //자투리가 있는 경우 한페이지 추가
-	}
+	int total_page = dao.getProductPageCount("CAT");
 %>
 <!DOCTYPE html>
 <html>
@@ -45,8 +39,8 @@
 			<%
 				while(rs.next()){
 			%>
-				<div class="col-md-4">
-					<img src="./resources/images/<%=rs.getString("p_fileName")%>" style="width:100%">
+				<div class="col-md-4 img-thumbnail" style="height: 432px">
+					<img src="./resources/images/<%=rs.getString("p_fileName")%>" style="width:200px" height="200px">
 					<h3><%=rs.getString("p_name")%></h3>
 					<p><%=rs.getString("p_description")%></p>
 					<h5><%=new DecimalFormat("#,###").format(rs.getInt("p_unitPrice"))%>원</h5>

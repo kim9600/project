@@ -12,7 +12,7 @@
 <script src="./resources/js/validation.js"></script>
 </head>
 <body>
-<jsp:include page="menu2.jsp"/>
+<jsp:include page="menu.jsp"/>
 <div class="jumbotron">
 	<div class="container">
 		<h1 class="display-4">상품수정</h1>
@@ -105,11 +105,11 @@
 			<label class="col-sm-2">상태</label>
 			<div class="col-sm-3">
 				<input type="radio" name="condition" value="New"
-				                                     <%=condition.equals("New")?"checked":""%>>소형견
+				                                     <%=condition.equals("New")?"checked":""%>>신규상품
 				<input type="radio" name="condition" value="Old"
-																						 <%=condition.equals("Old")?"checked":""%>>중형견
+												   <%=condition.equals("Old")?"checked":""%>>중고상품
 				<input type="radio" name="condition" value="Referbished"
-				                                     <%=condition.equals("Referbished")?"checked":""%>>대형견
+				                                     <%=condition.equals("Referbished")?"checked":""%>>재생상품
 			</div>
 		</div>
 		

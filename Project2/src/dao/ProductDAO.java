@@ -28,7 +28,7 @@ public class ProductDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		int x = 0;
+		int rec_cnt = 0;
 		String sql = "select count(*) from product";
 
 		try {
@@ -36,7 +36,7 @@ public class ProductDAO {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next())
-				x = rs.getInt(1);
+				rec_cnt = rs.getInt(1);
 		} catch (Exception e) {
 			System.out.println("getProductCount()에러"+e.getMessage());
 		}finally {
@@ -48,7 +48,13 @@ public class ProductDAO {
 				throw new RuntimeException(e2.getMessage());
 			}
 		}
-		return x;
+		return rec_cnt;
+	}
+	//전체 레코드로 페이지계산
+	public int getProductPageCount() {
+		int rec_cnt = getProductCount();
+		int total_page = (rec_cnt/limit)+((rec_cnt%limit)>0?1:0);
+		return total_page;
 	}
 	
 	//선택된 Product테이블에서 p_id에 해당하는 페이지 결정
@@ -144,7 +150,7 @@ public class ProductDAO {
 		}
 		return list; //조회된 게시글 리스트 리턴
 	}
-	
+	//id에 해당하는 자료 가져옴
 	public Product getProductById(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;

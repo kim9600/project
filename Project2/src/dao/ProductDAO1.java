@@ -51,7 +51,13 @@ public class ProductDAO1 {
 		}
 		return x;
 	}
-	
+	//전체 레코드로 페이지계산
+	public int getProductPageCount(String category) {
+		int rec_cnt = getProductCount(category);
+		int total_page = (rec_cnt/limit)+((rec_cnt%limit)>0?1:0);
+		return total_page;
+	}
+
 	//선택된 Product테이블에서 p_id에 해당하는 페이지 결정
 	public int getProductPage(String id, String category) {
 		//DB접속객체 생성
@@ -91,7 +97,6 @@ public class ProductDAO1 {
 		}
 		return pageNum;
 	}
-	
 	//조회목록 리턴 메소드
 	public List<Product> getProductList(int pageNum, String category) {
 		Connection con = null;
@@ -147,7 +152,7 @@ public class ProductDAO1 {
 		}
 		return list; //조회된 게시글 리스트 리턴
 	}
-	
+	//id에 해당하는 자료 가져옴
 	public Product getProductById(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;

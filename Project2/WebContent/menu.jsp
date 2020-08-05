@@ -52,6 +52,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="${pageContext.request.contextPath}/home.jsp">Home</a></li>
+       <li><a href="${pageContext.request.contextPath}/products.jsp">상품목록</a></li>
       <li><a href="${pageContext.request.contextPath}/addProduct.jsp">등록</a></li>
       <li><a href="${pageContext.request.contextPath}/editProduct.jsp?edit=update">수정</a></li>
       <li><a href="${pageContext.request.contextPath}/editProduct.jsp?edit=delete">삭제</a></li>

@@ -7,7 +7,7 @@
 </head>
 <% String edit=request.getParameter("edit"); %>
 <body>
-<jsp:include page="/menu.jsp"/>
+<jsp:include page="menu.jsp"/>
 <div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">상품 편집</h1>
@@ -22,8 +22,8 @@
      ResultSet rs= pstmt.executeQuery();
      while(rs.next()){
   %>
-  <div class="col-md-4">
-     <img src="./resources/images/<%=rs.getString("p_fileName") %>" style="width: 100%">
+  <div class="col-md-4 img-thumbnail" style="height: 432px">
+     <img src="./resources/images/<%=rs.getString("p_fileName") %>" style=width:200px height="200px">
      <h3><%=rs.getString("p_name") %></h3>
      <p><%=rs.getString("p_description") %></p>
      <p><%=rs.getString("p_unitPrice") %>원</p>

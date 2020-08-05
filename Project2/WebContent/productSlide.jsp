@@ -7,31 +7,25 @@
 <%@ page import="java.util.*" %>
 <%@include file="dbconn.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
+<% 
+	
 	int pageNum = 0;
 	int slideNum = 0;
-	String pid = "";
 	String id = request.getParameter("id");
 	if(request.getParameter("pageNum") != null)
 		pageNum = Integer.parseInt(request.getParameter("pageNum"));
 
 	ProductDAO dao = ProductDAO.getInstance();
 	List<Product> pList = new ArrayList<Product>();
-	int total_record = dao.getProductCount();
 	if(id.trim().length()<5){
-		slideNum = 1;
+		slideNum = Integer.parseInt(id);
 		pList = dao.getProductList(pageNum);
 	}else{
 		pageNum = dao.getProductPage(id);
 		pList = dao.getProductList(pageNum);
 	}
-	int total_page = 0; 
-	if(total_record%10==0) {         //나머지가 없는 경우
-	 total_page = total_record/10;   //정수/정수 = 정수
-	}else {                          //나머지가 있는 경우
-	 total_page = total_record/10;   //정수/정수 = 정수
-	 total_page = total_page + 1;    //자투리가 있는 경우 한페이지 추가
-	}
+	int total_record = dao.getProductCount();
+	int total_page = dao.getProductPageCount();
 %>
 <!DOCTYPE html>
 <html>
@@ -143,8 +137,7 @@ img {
 		
 		//System.out.println("j:"+j);
 		//pd.length-j:
- 		/* System.out.println("j=:"+(j+1)); */
-			/* for(int i=j+1;i<10;i++){
+/* 		for(int i=j+1;i<10;i++){
 				pd[i].setFilename("");
 				pd[i].setPname("");
 				pd[i].setDescription("");
@@ -153,52 +146,22 @@ img {
 				pd[i].setCategory("");
 				pd[i].setUnitPrice(0);
 				pd[i].setUnitsInStock(0);
-			} */
-
-		for(int i=0;i<j;i++){
-			switch (i) {
-  			case 0:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 1;
-	  					break;
-				case 1:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 2;
-	  					break;
-				case 2:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 3;
-	  					break;
-				case 3:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 4;
-	  					break;
-				case 4:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 5;
-	  					break;
-				case 5:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 6;
-	  					break;
-				case 6:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 7;
-	  					break;
-				case 7:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 8;
-	  					break;
-				case 8:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 9;
-	  					break;
-				case 9:
-	  				if(id.equals(pd[i].getProductId()))
-	  					slideNum = 10;
-	  					break;
-				default:
-  					slideNum = 1;
+		} */
+		for(int i=0;i<=j;i++){
+			if(id.equals(pd[i].getProductId())){
+				switch (i) {
+	  			case 0:	slideNum = 1;	break;
+					case 1:	slideNum = 2;	break;
+					case 2:	slideNum = 3;	break;
+					case 3:	slideNum = 4;	break;
+					case 4:	slideNum = 5;	break;
+					case 5:	slideNum = 6;	break;
+					case 6:	slideNum = 7; break;
+					case 7:	slideNum = 8;	break;
+					case 8:	slideNum = 9;	break;
+					case 9:	slideNum = 10; break;
+					default: slideNum = 1;
+				}
 			}
 		}
 %>
@@ -212,7 +175,9 @@ img {
 			<span class="badge badge-success">전체<%=total_record%>건</span>
 		</div>
 
-   <% for(int i=0;i<=j;i++){%>
+   <% for(int i=0;i<=j;i++){
+   			if(i==j+1) break;
+   %>
 		  <div class="mySlides">
 				<div class="numbertext"><%=i%> / 10</div>
 				<div class="row">
@@ -260,24 +225,26 @@ img {
 					</c:if>
 					<c:if test="${pageNum>1}">
 				    <li class="page-item enabled">
-					    <a href="./productSlide.jsp?id='10'&pageNum=<%=pageNum-1%>" class="page-link btn btn-secondary">Previous</a></li>
+					    <a href="./productSlide.jsp?id=10&pageNum=<%=pageNum-1%>" class="page-link btn btn-secondary">Previous</a></li>
 					</c:if>
-			    
 			    <%
-			    	for(int i=0;i<pd.length;i++){
+			    	for(int i=0;i<j+1;i++){
 			    		if(!pd[i].getFilename().equals("")){
-			    			if(i==j) break;
 			   	%>
 			    <li class="page-item">
 						<img class="demo cursor" src="./resources/images/<%=pd[i].getFilename()%>" style="width:100px" onclick="currentSlide(<%=i%>+1)" alt="<%=pd[i].getPname()%>">
 					</li>
-			    <%
-			  		}
+			    <%	}else{%>
+			    
+			    <li class="page-item">
+						<img class="demo cursor" src="https://placehold.it/150x90?text=IMAGE" style="width:100px" onclick="" alt="Image">
+					</li>
+			   	<%	}
 			    	}
 			    %>
 					<c:if test="${pageNum<total_page}">
 				    <li class="page-item enabled">
-					    <a href="./productSlide.jsp?id='1'&pageNum=<%=pageNum+1%>" class="page-link btn btn-secondary">Next</a></li>
+					    <a href="./productSlide.jsp?id=1&pageNum=<%=pageNum+1%>" class="page-link btn btn-secondary">Next</a></li>
 					</c:if>
 					<c:if test="${pageNum>=total_page}">
 			  	  <li class="page-item disabled"><a href="#">Next</a></li>
@@ -291,7 +258,6 @@ img {
 	<jsp:include page="footer.jsp"/>
 
 <script>
-
 var slideIndex = <%=slideNum%>;
 showSlides(slideIndex);
 
@@ -324,7 +290,9 @@ function showSlides(n) {
 
 <script>
 /* javascript 함수 선언 function 함수명(아규먼트){실행문;} */
-function addToCart(seq){	
+function addToCart(seq){
+	
+	
 	var value = document.getElementById("addForm"+seq).id.value;
    
 	if(confirm(value+"상품을 장바구니에 추가하시겠습니까>")){

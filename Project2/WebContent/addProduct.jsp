@@ -9,14 +9,13 @@
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	ResultSet rs = pstmt.executeQuery();
 	String pid = "";
-
 	if(rs.next()) pid = rs.getString(1).trim();
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품목록</title>
+<title>상품등록</title>
 
 <script src="./resources/js/validation.js"></script>
 </head>
@@ -24,7 +23,7 @@
 	<jsp:include page="menu.jsp"/>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-4">상품목록</h1>
+			<h1 class="display-4">상품등록</h1>
 		</div>
 	</div>
 	<div class="container">
@@ -35,7 +34,7 @@
 			  class="form-horizontal" method="post" enctype="multipart/form-data">
 		
 			<div class="form-group row">
-				<label class="col-sm-2">삼품코드</label>
+				<label class="col-sm-2">상품코드</label>
 				<div class="col-sm-3">
 					<input type="text" name="productId" id="productId" class="form-control" value="<%=pid%>" readonly>
 				</div>
@@ -85,6 +84,7 @@
 				%>
 				</select>		
 				</div>
+				<h5><a href="addCategory.jsp"><span class="badge">추가</span></a></h5>
 			</div>
 			<%
 				if(pstmt != null) pstmt.close();
@@ -100,9 +100,9 @@
 			<div class="form-group row">
 				<label class="col-sm-2">상태</label>
 				<div class="col-sm-3">
-					<input type="radio" name="condition" value="CAT" checked>고양이용품
-					<input type="radio" name="condition" value="DOG"        >강아지용품
-					<input type="radio" name="condition" value="ETC">기타용품
+					<input type="radio" name="condition" value="New" checked>신규용품
+					<input type="radio" name="condition" value="Old"        >중고용품
+					<input type="radio" name="condition" value="Referbished">재생용품
 				</div>
 			</div>
 			
@@ -110,7 +110,7 @@
 				<label class="col-sm-2">이미지</label>
 				<div class="col-sm-5">
 					<input type="file" name="productImage" id="myFile" class="form-control"/>
-					<form><img src="./resources/images/<%=rs.getString("p_fileName") %>" id="myImg" style="width:100%" alt="Image"/></form>
+					<form><img src="https://placehold.it/150x90?text=IMAGE" id="myImg" style="width:100%" alt="Image"/></form>
 				</div>
 			</div>
 			

@@ -13,9 +13,9 @@ description varchar(30),
 primary key(seq)
 );
 
-delete from category where categoryName='Home';
+delete from category where categoryName='CATCAT';
 select * from category;
-
+update category set description='기타 용품 관련 카테고리입니다' where description='ETC';
 
 /*카테고리 테이블에 데이타 입력*/
 insert into category(categoryName,description) values('CAT', 'CAT');

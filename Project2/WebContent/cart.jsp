@@ -8,7 +8,9 @@
 <head>
 <meta charset="UTF-8">
 
-<% String cartId = session.getId(); %><!-- sessionId -->
+<% String cartId = session.getId(); 
+
+%><!-- sessionId -->
 <title>징바구니</title>
 <script type="text/javascript">
 	function change(seq){
