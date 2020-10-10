@@ -1,0 +1,33 @@
+# login.jsp
+message.user.login.title=Login
+message.user.login.id=ID
+message.user.login.password=Password
+message.user.login.passwordConfirm=Password Confirm
+message.user.login.name=Full Name
+message.user.login.engLastname=Last Name(Eng)
+message.user.login.engFirstname=First Name(Eng)
+message.user.login.gender=Gender
+message.user.login.birth=Birth
+message.user.login.email=E-mail
+message.user.login.phone=Phone Number
+message.user.login.role=Role
+message.user.login.loginBtn=Log-In
+message.user.login.registBtn=Regist
+message.user.login.updateBtn=Update
+message.user.login.deleteBtn=Delete
+
+message.user.login.language.en=English
+message.user.login.language.ko=한글
+
+# getBoardList.jsp
+message.board.list.mainTitle=게시글 목록
+message.board.list.welcomeMsg=님! 게시판에 오신걸 환영합니다.
+message.board.list.search.condition.title=제목
+message.board.list.search.condition.content=내용
+message.board.list.search.condition.btn=검색
+message.board.list.table.head.seq=번호
+message.board.list.table.head.title=제목
+message.board.list.table.head.writer=작성자
+message.board.list.table.head.regDate=등록일
+message.board.list.table.head.cnt=조회수
+message.board.list.link.insertBoard=새글 등록

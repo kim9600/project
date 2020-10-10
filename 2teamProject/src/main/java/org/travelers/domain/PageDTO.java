@@ -1,0 +1,39 @@
+package org.travelers.domain;
+
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
+public class PageDTO {
+
+	private int startPage;    //시작페이지
+	private int endPage;      //종료페이지
+	private boolean prev,next;//이전,다음 여부
+	
+	private int total;        //전체건수
+	private Criteria cri;     //페이징 파라미터
+	
+	//생성자
+	public PageDTO(Criteria cri, int total) {
+		this.cri = cri;
+		this.total = total;
+		
+		//페이징 산식처리
+		this.endPage = (int)(Math.ceil(cri.getPageNum()/10.0))*10; // 10/10.0=0.0, 12/10.0=1.2=> 2, 10
+		
+		this.startPage = this.endPage-9;  // 10-9 = 1
+		
+		//실제 마지막 페이지
+		int realEnd = (int)(Math.ceil((total*1.0)/cri.getAmount()));//52.0/10 = 5.2->(int)6.0 = 6 마지막페이지
+		//System.out.println("실제end:"+realEnd);
+		
+		//마지막 페이지 보정
+		if(realEnd<=this.endPage) {// 12,13
+			this.endPage = realEnd;// 6
+		}
+		//이전 페이지, 다음 페이지 존재여부
+		this.prev = this.startPage > 1;  //true/false 1>1 false
+		this.next = this.endPage<realEnd;//true/false 6<6 false
+	}
+}

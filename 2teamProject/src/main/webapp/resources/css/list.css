@@ -1,0 +1,39 @@
+@charset "UTF-8";
+container contBody{
+color:rgb(119, 119, 119);
+display:block;
+font-size:13px;
+height:0px;
+margin-bottom:0px;
+margin-left:155px;
+margin-right:155px;
+margin-top:28px;
+padding-bottom:0px;
+padding-left:0px;
+padding-right:0px;
+padding-top:0px;
+position:relative;
+text-size-adjust:100%;
+width:1000px;
+}
+container contBody INavi_wrap{
+	color:rgb(119, 119, 119);
+display:block;
+float:left;
+font-family:"Nanum Gothic", "Spoqa Han Sans", sans-serif;
+font-size:13px;
+height:734px;
+margin-bottom:0px;
+margin-left:0px;
+margin-right:0px;
+margin-top:0px;
+overflow-x:hidden;
+overflow-y:hidden;
+padding-bottom:0px;
+padding-left:0px;
+padding-right:0px;
+padding-top:0px;
+text-size-adjust:100%;
+width:170px;
+}
+container contBody contents_wrap
