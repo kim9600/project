@@ -2,14 +2,15 @@ package org.travelers.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.travelers.domain.ReviewVO;
 import org.travelers.domain.Criteria;
-
+@Mapper
 public interface ReviewMapper {
 	
 	//@Select("select * from tbl_board where bno > 0")
-	public List<ReviewVO> getList();
+	List<ReviewVO> getList();
 	
 	//입력
 	public void insert(ReviewVO vo);

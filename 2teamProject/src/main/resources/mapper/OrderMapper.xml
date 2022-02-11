@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.travelers.mapper.OrderMapper">
+	
+
+
+
+
+
+   <insert id="insert">
+   <selectKey order="BEFORE" resultType="String" keyProperty="order_id">
+   select concat(concat('V',to_char(sysdate,'yy')),nvl(trim(to_char(cast(substr(max(order_id),4) as int)+1,'0999')),'0001')) from orders
+   </selectKey>
+  
+<![CDATA[
+	insert into orders(order_id,order_date,user_id,amount,gcode,gname,gtransit,gconfirmQty,gfromDate,gtoDate) 
+	values (#{order_id},sysdate,#{user_id},#{amount},#{gcode},#{gname},#{gtransit},#{gconfirmQty},#{gfromDate},#{gtoDate})
+	
+
+]]>
+
+</insert>
+
+<select id="orderlist" resultType="org.travelers.domain.OrderVO" parameterType="String">
+<![CDATA[
+   select * from orders  where user_id=#{user_id}
+]]>
+</select>
+
+
+<select id="read" resultType="org.travelers.domain.OrderVO">
+		<![CDATA[
+			select * from orders where order_id=#{order_id}
+		]]>
+	</select>
+
+ <!-- 주문한유저의 정보 -->
+<!-- <select id="userRead" resultType="org.travelers.domain.UserVO" parameterType="String">
+	select user.* from users inner join orders on users.id=orders.user_id where orders.user_id=#{user_id}
+</select>
+
+<select id="goodsRead" resultType="org.travelers.domain.GoodsVO" parameterType="String">
+	select goods.* from goods inner join orders on goods.gcode=orders.gcode where orders.gcode=#{gcode}
+</select>   -->
+
+<update id="updateConfirmQty">
+	<![CDATA[
+	update orders set gconfirmQty = #{gconfirmQty} where order_id= #{order_id}
+	]]>
+	</update>
+
+
+<update id="updateImages">
+update orders set images = (select uploadFile from goods g where g.gcode = orders.gcode)  where user_id= #{user_id}
+</update>
+
+<update id="updateFlag" parameterType="map">
+update orders set flag= 1  where gcode = #{gcode} and user_id= #{user_id}
+</update>
+
+
+
+
+
+</mapper>

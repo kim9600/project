@@ -10,7 +10,7 @@
 		</layout>
 	</appender>
 	
-	<!-- Application Loggers -->
+	<!-- org.travelers.Application Loggers -->
 	<logger name="org.travelers.controller">
 		<level value="info" />
 	</logger>

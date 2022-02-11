@@ -2,10 +2,12 @@ package org.travelers.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.travelers.domain.NoticeVO;
 
 import org.travelers.domain.Criteria;
 
+@Mapper
 public interface NoticeMapper {
 	
 	//@Select("select * from tbl_Notice where nno > 0")

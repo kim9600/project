@@ -5,11 +5,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.travelers.domain.OrderVO;
 import org.travelers.domain.UserVO;
 import org.apache.ibatis.annotations.Param;
 import org.travelers.domain.GoodsVO;
-
+@Mapper
 public interface OrderMapper {
 	
 	

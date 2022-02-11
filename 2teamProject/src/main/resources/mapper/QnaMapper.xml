@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.travelers.mapper.QnaMapper">
+
+	<!-- sql문 모튤 -->
+	<sql id="criteria">
+				<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+				<foreach collection="typeArr" item="type">
+					<trim prefix="OR">
+						<choose>
+							<when test="type=='T'.toString()">
+								title like '%'||#{keyword}||'%'
+							</when>
+							<when test="type=='C'.toString()">
+								content like '%'||#{keyword}||'%'
+							</when>
+							<when test="type=='W'.toString()">
+								writer like '%'||#{keyword}||'%'
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim>	  		
+	</sql>
+
+	<select id="getList" resultType="org.travelers.domain.QnaVO">
+			<![CDATA[
+				select * from qna where qno > 0
+			]]>
+	</select>
+
+	<select id="getListWithPaging" resultType="org.travelers.domain.QnaVO">
+		  <![CDATA[
+				select qno, title, content, writer, regdate, updateDate
+		      from
+		      (
+		  		  select /*+index_desc(qna pk_qna) */ 
+		  		          rownum rn, qno, title, content, writer, regdate, updateDate
+		  		  from qna
+		  			where
+		  ]]>
+		  <include refid="criteria"></include>
+		  <![CDATA[
+		  			rownum<=#{pageNum}*#{amount}
+		  		)
+		  	where rn > (#{pageNum}-1)*#{amount}
+		  ]]>
+	</select>
+
+	<insert id="insert">
+			<![CDATA[
+				insert into qna(qno,title,content,writer)
+				values ((select max(nvl(qno,0))+1 from qna),#{title},#{content},#{writer})
+			]]>
+	</insert>
+
+	<insert id="insertSelectKey">
+			<selectKey keyProperty="qno" order="BEFORE"	resultType="long">
+				select seq_qna.nextval from dual
+			</selectKey>
+			
+			<![CDATA[
+				insert into qna(qno,title,content,writer)
+				values((select max(nvl(qno,0))+1 from qna),#{title},#{content},#{writer})
+			]]>
+	</insert>
+
+	<!-- <select id="read" parameterType="qno" resultType="org.travelers.domain.QnaVO"> -->
+	<select id="read" resultType="org.travelers.domain.QnaVO">
+			<![CDATA[
+				select * from qna where qno = #{qno}
+			]]>
+	</select>
+
+	<delete id="delete">
+			<![CDATA[delete from qna where qno = #{qno}]]>
+	</delete>
+	
+	<update id="update">
+			<![CDATA[
+				update qna set title   = #{title}
+												,content = #{content}
+											  ,writer  = #{writer}
+												,updateDate = sysdate
+				where qno = #{qno}
+			]]>
+	</update>
+	
+	<select id="getTotalCount" resultType="int">
+			<![CDATA[
+				select count(*) from qna
+				where
+		  ]]>
+		  <include refid="criteria"></include>
+		  <![CDATA[
+				 qno > 0 
+			]]>
+	</select>
+	
+</mapper>

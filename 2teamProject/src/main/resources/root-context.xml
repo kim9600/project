@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans> <!--xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/jdbc
+http://www.springframework.org/schema/jdbc ">
+
+    &lt;!&ndash; Root Context: defines shared resources visible to all other web components &ndash;&gt;
+    &lt;!&ndash; hicariCP설정 log4jdbc.log4j2.properties/resources에 추가 &ndash;&gt;
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        <property name="driverClassName"
+                  value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl"
+                  value="jdbc:mysql://localhost:3306/travelo"/>
+        <property name="username" value="travelo"/>
+        <property name="password" value="phw0819!"/>
+    </bean>
+
+    &lt;!&ndash; dataSource설정 &ndash;&gt;
+    &lt;!&ndash;<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+        <constructor-arg ref="hikariConfig"/>
+    </bean>&ndash;&gt;
+
+    &lt;!&ndash; Transaction 설정 &ndash;&gt;
+    &lt;!&ndash; <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>&ndash;&gt;
+
+
+    &lt;!&ndash; sqlSessionFactory설정 &ndash;&gt;
+    <bean id="sqlSessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+    &lt;!&ndash;  다국어 처리 &ndash;&gt;
+    &lt;!&ndash; MessageSource 등록 &ndash;&gt;
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>message.messageSource</value>
+            </list>
+        </property>
+    </bean>
+
+    &lt;!&ndash; Mapper경로 설정 &ndash;&gt;
+    &lt;!&ndash;<mybatis-spring:scan
+            base-package="org.travelers.mapper"/>&ndash;&gt;
+
+    &lt;!&ndash; gmail &ndash;&gt;
+    <bean id="mailSender"
+          class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value=""/>
+        <property name="password" value=""/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    &lt;!&ndash; 서비스 레이어 등록 &ndash;&gt;
+    <context:component-scan base-package="org.travelers.service"/>
+
+    <jdbc:embedded-database id="dataSource"/>-->
+</beans>

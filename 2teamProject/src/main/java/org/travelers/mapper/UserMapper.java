@@ -3,9 +3,10 @@ package org.travelers.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.travelers.domain.Criteria;
 import org.travelers.domain.UserVO;
-
+@Mapper
 public interface UserMapper {
 	
 	public UserVO readUser(UserVO vo);     //회원정보조회

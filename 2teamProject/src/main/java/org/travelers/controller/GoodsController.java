@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/goods/*")//클래스 레벨 어노테이션
 public class GoodsController {
+
 	private GoodsService service;
 	private OrderService orderService;
 

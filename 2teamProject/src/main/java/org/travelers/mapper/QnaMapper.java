@@ -2,10 +2,11 @@ package org.travelers.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.travelers.domain.Criteria;
 import org.travelers.domain.QnaVO;
-
+@Mapper
 public interface QnaMapper {
 	
 	//@Select("select * from tbl_board where qno > 0")

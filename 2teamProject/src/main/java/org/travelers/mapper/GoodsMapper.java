@@ -2,12 +2,13 @@ package org.travelers.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.travelers.domain.Criteria;
 import org.travelers.domain.GoodsVO;
 import org.travelers.domain.OrderVO;
 
 
-
+@Mapper
 public interface GoodsMapper {
 	
 	public List<GoodsVO> getList();
