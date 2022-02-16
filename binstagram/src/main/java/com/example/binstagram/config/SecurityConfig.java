@@ -19,16 +19,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable();
         http.authorizeRequests()
-                    .antMatchers("/","/loginForm","/joinForm","/style/**","/js/**","/img/**").permitAll() //권한없이 접근허가해줄 페이지
+                    .antMatchers("/","/auth/loginForm","/auth/joinForm","/style/**","/js/**","/img/**").permitAll() //권한없이 접근허가해줄 페이지
                     .anyRequest().authenticated()
                 .and()
                     .formLogin() //로그인과 관련된 설정
-                    .loginPage("/loginForm")
+                    .loginPage("/auth/loginForm")
                     .loginProcessingUrl("/loginForm")
-                    .defaultSuccessUrl("/user/story")
+
+                    //.defaultSuccessUrl("/user/story")
                 .and()
                 .logout()//로그아웃과 관련된 설정
-                .logoutSuccessUrl("/loginForm")
+                .logoutSuccessUrl("/auth/loginForm")
                 .invalidateHttpSession(true); //세션 전체삭제
 
     }
