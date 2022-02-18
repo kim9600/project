@@ -1,7 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transfo">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -22,7 +23,9 @@
         <input type="password" class="password" name="password" id="password" placeholder="비밀번호">
         <button id="btn_login" disabled>로그인</button>
     </form>
-    <%--<span class="login_input_check" th:if="${param.error}"> 입력한 계정을 찾을 수 없습니다. </span>--%>
+    <span class="login_input_check">
+
+    </span>
     <!-- Oauth 소셜로그인 -->
     <div class="login_facebook">
         <img class="logo_facebook" src="/img/facebook_icon.png">

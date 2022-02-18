@@ -12,7 +12,7 @@ spring:
     password: binsta1234!
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     open-in-view: true
     show-sql: true
 
