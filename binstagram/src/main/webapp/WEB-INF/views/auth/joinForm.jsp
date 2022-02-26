@@ -16,7 +16,7 @@
 <body>
 <div class="container">
     <img class="logo_instagram" src="/img/logo_text.png" alt="instagram_logo">
-    <form action="/joinForm" method="post">
+    <form action="/auth/joinForm" method="post">
         <input type="email" class="input_signup" name="email" id="email" placeholder="이메일 주소" required="required"  maxlength="30"/>
         <input type="password" class="input_signup" name="password" id="password" placeholder="비밀번호" required="required" />
         <input type="text" class="input_signup" name="phone" id="phone" placeholder="전화번호" required="required" />

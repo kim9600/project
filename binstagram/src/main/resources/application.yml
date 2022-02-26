@@ -12,9 +12,12 @@ spring:
     password: binsta1234!
   jpa:
     hibernate:
-      ddl-auto: create
-    open-in-view: true
+      ddl-auto: update
+    generate-ddl: true
     show-sql: true
+
+
+
 
   security:
     user:

@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="/loginForm" method="post">
+    <form action="/auth/loginForm" method="post">
         <img class="logo_instagram" src="/img/logo_text.png" alt="instagram_logo">
         <input type="text" class="username" name="username" id="username" placeholder="이메일">
         <input type="password" class="password" name="password" id="password" placeholder="비밀번호">

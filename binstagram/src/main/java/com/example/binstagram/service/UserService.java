@@ -5,6 +5,7 @@ import com.example.binstagram.domain.user.UserRepository;
 import com.example.binstagram.handler.ex.CustomValidationException;
 import com.example.binstagram.web.dto.user.UserLoginDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.beanvalidation.CustomValidatorBean;
@@ -29,7 +30,7 @@ public class UserService {
         // 빌더 패턴
              userRepository.save(User.builder().
                 email(userLoginDto.getEmail())
-                .password(userLoginDto.getPassword())
+                .password(encoder.encode(userLoginDto.getPassword()))
                 .phone(userLoginDto.getPhone())
                 .name(userLoginDto.getName())
                 .title(null)
@@ -39,4 +40,12 @@ public class UserService {
 
     }
 
+
+    public User loadUserByUsername(String email) throws UsernameNotFoundException{
+        User user =userRepository.findUserByEmail(email);
+
+        if(user ==null)
+            return null;
+        return user;
+    }
 }

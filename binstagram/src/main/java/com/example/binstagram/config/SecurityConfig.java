@@ -24,7 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .formLogin() //로그인과 관련된 설정
                     .loginPage("/auth/loginForm")
-                    .loginProcessingUrl("/loginForm")
+                    .loginProcessingUrl("/auth/loginForm")
+                    .defaultSuccessUrl("/user/story")
 
                     //.defaultSuccessUrl("/user/story")
                 .and()
