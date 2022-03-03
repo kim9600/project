@@ -19,7 +19,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void save(UserLoginDto userLoginDto){
+    public User save(UserLoginDto userLoginDto){
         if(userRepository.findUserByEmail(userLoginDto.getEmail()) != null)
             throw new CustomValidationException("이미 존재하는 email입니다.");
         //Spring Security의 비밀번호 암호화 기능으로 암호화 한 다음,
@@ -28,7 +28,7 @@ public class UserService {
 
         //User u = User.builder().account(account).password(password).status(status).build();
         // 빌더 패턴
-             userRepository.save(User.builder().
+        return  userRepository.save(User.builder().
                 email(userLoginDto.getEmail())
                 .password(encoder.encode(userLoginDto.getPassword()))
                 .phone(userLoginDto.getPhone())
